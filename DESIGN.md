@@ -23,12 +23,40 @@ This document is the source of truth for the public website. Update it whenever 
 
 ## Visual Direction
 
-- Overall feeling: refined residential hospitality, warm, direct, and practical.
-- Use the Figma Make design as the visual base: full-bleed photo hero, coral primary color, soft white surfaces, rounded image cards, restrained motion.
-- Primary color: `#E87B77`.
-- Background: white and light neutral bands.
-- Text: high-contrast dark neutral, with muted gray for secondary information.
-- Avoid one-note decoration, fake stock imagery, heavy gradients, and overly promotional copy.
+- Overall feeling: refined residential hospitality, warm, editorial, minimal. Inspired by Ray-is-a-place, Kinn Collective, Daniel Blue.
+- Hero is full-bleed photo with the wordmark anchored bottom-left and a soft bottom-weighted vignette — no heavy gradient.
+- Photo surfaces are pure rectangles (no rounded corners). Radius is reserved for small interactive controls (4–6px).
+- Color does not come from the brand — it comes from the real photography. The UI is built on warm neutrals.
+
+### Palette (defined in `src/styles/theme.css`)
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| `--background` | `#FAF8F4` | Page base, warm off-white |
+| `--foreground` | `#1A1814` | Body text, headings, primary CTA fill |
+| `--primary` / `--primary-foreground` | `#1A1814` / `#FAF8F4` | shadcn CTA, footer, icon boxes |
+| `--secondary` | `#EFE9DE` | Cream-tone full-width section bands |
+| `--muted` / `--muted-foreground` | `#F2EDE3` / `#6B635A` | Subtler bg + secondary copy |
+| `--accent` | `#B8896B` | Warm terracotta, used sparingly |
+| `--border` | `rgba(26,24,20,0.10)` | Hairlines |
+
+Avoid: any pink/coral, heavy gradients, drop shadows on photos, fake stock imagery, overly promotional copy.
+
+### Typography
+
+- Headings: **Fraunces** (variable, optical-sizing on, opsz 144 for display) at weight 400.
+- Body and UI: **Inter** 400/500.
+- Scale (see `theme.css` `@layer base`):
+  - h1 `clamp(2.25rem, 5vw, 3.75rem)`, tracking `-0.02em`, line-height 1.05.
+  - h2 `clamp(1.75rem, 3.5vw, 2.5rem)`, tracking `-0.015em`.
+  - h3 `clamp(1.25rem, 2vw, 1.5rem)`.
+  - h4 / labels / eyebrows: Inter 12px uppercase, tracking `0.12em`–`0.18em`.
+- A reusable `.eyebrow` class is provided in `fonts.css` for section labels.
+
+### Motion
+
+- Use `motion/react` only. Default in-view entrance: opacity 0 → 1 + y 24 → 0, 0.7s, single shot (`viewport={{ once: true }}`).
+- Hover transforms on images stay subtle: `scale-[1.03]` over 700–1000ms. No dramatic 1.1 scales.
 
 ## Layout
 
@@ -58,11 +86,21 @@ This document is the source of truth for the public website. Update it whenever 
 
 ## Component Ownership
 
-- Apartment data lives in `Palma Rosa Residence Website/src/app/data/apartments.ts`.
-- Availability logic lives in `Palma Rosa Residence Website/src/app/lib/availability.ts`.
-- Shared availability state lives in `Palma Rosa Residence Website/src/app/lib/availability-context.tsx`.
-- Translations live in `Palma Rosa Residence Website/src/app/lib/language.tsx`.
+- Apartment data lives in `src/app/data/apartments.ts`.
+- Availability logic lives in `src/app/lib/availability.ts`.
+- Shared availability state lives in `src/app/lib/availability-context.tsx`.
+- Translations live in `src/app/lib/language.tsx`.
 - Do not reintroduce apartment data inside components unless it is component-only presentation text.
+
+## Repository Layout
+
+Flat layout at repo root (no nested project folder):
+
+- `src/` — React + Vite app entry (`main.tsx`, `app/`, `styles/`).
+- `public/` — static assets served as-is (`images/apartments/<id>/...`, `images/building/...`).
+- `api/` — Vercel serverless functions (CommonJS, isolated by `api/package.json`).
+- `docs/` — `design inspiration/` reference screenshots, ATTRIBUTIONS.
+- `index.html`, `vite.config.ts`, `vercel.json` at root.
 
 ## Future Improvements
 

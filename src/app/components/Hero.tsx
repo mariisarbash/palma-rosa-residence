@@ -20,54 +20,50 @@ export default function Hero() {
           alt="Palma Rosa Residence - Vista dall'alto"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        {/* Subtle bottom-weighted vignette, editorial — not the heavy gradient. */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/55" />
       </div>
 
-      <div className="relative z-10 flex min-h-[100dvh] w-full flex-col items-center justify-center px-6 pb-20 pt-28 text-center text-white">
-        <div className="w-full max-w-4xl">
+      <div className="relative z-10 flex min-h-[100dvh] w-full flex-col px-6 pb-24 pt-24 text-white md:px-12 md:pb-32">
+        {/* Bottom-left wordmark + tagline, alla Ray */}
+        <div className="mt-auto max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="eyebrow mb-6 text-white/80"
+          >
+            Via Privata Mario Bianco, Milano
+          </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mx-auto mb-4 max-w-full font-serif text-4xl leading-tight tracking-tight md:text-6xl"
+            className="mb-6 text-white"
           >
-            <span className="block sm:inline">Palma Rosa</span>{" "}
-            <span className="block sm:inline">Residence</span>
+            Palma Rosa Residence
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-2 max-w-xs break-words px-2 text-lg opacity-90 md:max-w-[28rem] md:text-2xl"
-          >
-            <span className="block md:inline">Via Privata Mario Bianco</span>
-            <span className="hidden md:inline">, Milano</span>
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mx-auto mb-8 max-w-xs break-words px-2 text-xs opacity-80 md:max-w-[32rem] md:text-xl"
+            className="mb-10 max-w-xl text-base text-white/85 md:text-lg"
           >
             {language === "it"
-              ? "10 appartamenti con bagno privato vicino alla M2"
-              : "10 apartments with private bathrooms near the M2"}
+              ? "Dieci appartamenti con bagno privato, a pochi minuti dalla M2."
+              : "Ten apartments with private bathrooms, minutes from the M2 line."}
           </motion.p>
           <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             onClick={scrollToRooms}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-8 py-3 text-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
+            className="inline-flex items-center gap-3 border border-white/40 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-foreground"
           >
             {t("discover")}
-            <ChevronDown className="w-5 h-5" />
+            <ChevronDown className="h-4 w-4" />
           </motion.button>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronDown className="w-8 h-8 text-white/60" />
       </div>
     </div>
   );

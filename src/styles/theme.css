@@ -1,81 +1,104 @@
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Palma Rosa Residence — design system.
+ *
+ * Palette: warm off-white surfaces, dark warm foreground, no pink.
+ * `--primary` is reused by shadcn for CTA, icon boxes, footer:
+ * we make it the dark warm so existing `bg-primary` classes
+ * read as elegant nero/inchiostro rather than coral.
+ */
+
 :root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #E87B77;
-  --primary-foreground: #ffffff;
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #FFF5F5;
-  --accent-foreground: #030213;
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+
+  /* Surfaces */
+  --background: #FAF8F4;       /* warm off-white, page base */
+  --foreground: #1A1814;       /* dark warm, near-black */
+  --card: #FFFFFF;
+  --card-foreground: #1A1814;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1814;
+
+  /* Primary = dark warm (used for CTA, footer, icon boxes via shadcn) */
+  --primary: #1A1814;
+  --primary-foreground: #FAF8F4;
+
+  /* Secondary surface = deeper cream — for full-width "section" backgrounds */
+  --secondary: #EFE9DE;
+  --secondary-foreground: #1A1814;
+
+  /* Muted (subtler bg + tertiary text) */
+  --muted: #F2EDE3;
+  --muted-foreground: #6B635A;
+
+  /* Accent = warm terracotta, used sparingly */
+  --accent: #B8896B;
+  --accent-foreground: #FAF8F4;
+
+  --destructive: #B43A2E;
+  --destructive-foreground: #FAF8F4;
+
+  --border: rgba(26, 24, 20, 0.10);
   --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
+  --input-background: #FFFFFF;
+  --switch-background: #D8D1C3;
+
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --ring: rgba(26, 24, 20, 0.35);
+
+  --chart-1: #B8896B;
+  --chart-2: #6B635A;
+  --chart-3: #1A1814;
+  --chart-4: #D8C2A8;
+  --chart-5: #8B7355;
+
+  --radius: 0.25rem;            /* meno "appy", più editoriale */
+
+  --sidebar: #FAF8F4;
+  --sidebar-foreground: #1A1814;
+  --sidebar-primary: #1A1814;
+  --sidebar-primary-foreground: #FAF8F4;
+  --sidebar-accent: #F2EDE3;
+  --sidebar-accent-foreground: #1A1814;
+  --sidebar-border: rgba(26, 24, 20, 0.10);
+  --sidebar-ring: rgba(26, 24, 20, 0.35);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: #1A1814;
+  --foreground: #FAF8F4;
+  --card: #211E18;
+  --card-foreground: #FAF8F4;
+  --popover: #211E18;
+  --popover-foreground: #FAF8F4;
+  --primary: #FAF8F4;
+  --primary-foreground: #1A1814;
+  --secondary: #2A261F;
+  --secondary-foreground: #FAF8F4;
+  --muted: #2A261F;
+  --muted-foreground: #B5AB99;
+  --accent: #B8896B;
+  --accent-foreground: #FAF8F4;
+  --destructive: #B43A2E;
+  --destructive-foreground: #FAF8F4;
+  --border: rgba(250, 248, 244, 0.12);
+  --input: rgba(250, 248, 244, 0.12);
+  --ring: rgba(250, 248, 244, 0.35);
+  --chart-1: #B8896B;
+  --chart-2: #D8C2A8;
+  --chart-3: #FAF8F4;
+  --chart-4: #8B7355;
+  --chart-5: #6B635A;
+  --sidebar: #1A1814;
+  --sidebar-foreground: #FAF8F4;
+  --sidebar-primary: #FAF8F4;
+  --sidebar-primary-foreground: #1A1814;
+  --sidebar-accent: #2A261F;
+  --sidebar-accent-foreground: #FAF8F4;
+  --sidebar-border: rgba(250, 248, 244, 0.12);
+  --sidebar-ring: rgba(250, 248, 244, 0.35);
 }
 
 @theme inline {
@@ -105,10 +128,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -128,55 +151,80 @@
     @apply bg-background text-foreground;
   }
 
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
-
   html {
     font-size: var(--font-size);
     scroll-behavior: smooth;
   }
 
+  /*
+   * Editorial typography scale.
+   * Headings use Fraunces (.font-serif), body uses Inter.
+   */
   h1 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-optical-sizing: auto;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-optical-sizing: auto;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
   h3 {
-    font-size: var(--text-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-optical-sizing: auto;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   h4 {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+
+  p {
+    line-height: 1.65;
   }
 
   label {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.4;
   }
 
   button {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
   }
 
   input {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-normal);
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
+  }
+
+  ::selection {
+    background: var(--foreground);
+    color: var(--background);
   }
 }
