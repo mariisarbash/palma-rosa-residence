@@ -1,16 +1,13 @@
 interface LogoProps {
   className?: string;
   variant?: "light" | "dark";
-  /**
-   * Kept for backwards compatibility; the wordmark *is* the logo,
-   * so this is now treated as always true.
-   */
   showText?: boolean;
 }
 
 /**
- * Wordmark in Fraunces — minimal, editorial.
- * Two lines on tight tracking, the second line letter-spaced as eyebrow.
+ * Wordmark: "Palma Rosa" set in General Sans medium with the word
+ * "Residence" rendered in italic Cormorant — a tiny piece of expressivity
+ * the user asked back in. Two lines on tight stacking.
  */
 export default function Logo({ className = "", variant = "dark" }: LogoProps) {
   const isLight = variant === "light";
@@ -18,14 +15,14 @@ export default function Logo({ className = "", variant = "dark" }: LogoProps) {
   return (
     <div
       className={`flex flex-col leading-none ${className}`}
-      style={{ color: isLight ? "#FAF8F4" : "#1A1814" }}
+      style={{ color: isLight ? "#F7F3EC" : "#1F1B16" }}
     >
-      <span className="font-serif text-[1.35rem] tracking-tight md:text-2xl">
+      <span className="text-lg font-semibold tracking-tight md:text-xl">
         Palma Rosa
       </span>
       <span
-        className="mt-1 text-[0.65rem] font-medium uppercase"
-        style={{ letterSpacing: "0.32em", opacity: 0.75 }}
+        className="font-display-italic text-[0.95rem] leading-none md:text-base"
+        style={{ opacity: 0.85, marginTop: "2px" }}
       >
         Residence
       </span>

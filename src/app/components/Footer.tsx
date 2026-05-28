@@ -1,12 +1,13 @@
 import { MapPin, MessageCircle, Phone } from "lucide-react";
+import { Link } from "react-router";
 import { RESIDENCE_ADDRESS, RESIDENCE_MAP_URL, WHATSAPP_NUMBER } from "../data/apartments";
 import { useLanguage } from "../lib/language";
 import Logo from "./Logo";
 
 export default function Footer() {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}`;
-  const fg = "rgba(250, 248, 244, 0.7)";
+  const fg = "rgba(247, 243, 236, 0.7)";
 
   return (
     <footer className="bg-primary px-6 py-20 text-primary-foreground md:px-12 md:py-24">
@@ -15,15 +16,13 @@ export default function Footer() {
           <div>
             <Logo variant="light" />
             <p className="mt-6 max-w-xs text-sm" style={{ color: fg }}>
-              {language === "it"
-                ? "Appartamenti con bagno privato vicino alla M2 a Milano."
-                : "Apartments with private bathrooms near the M2 line in Milan."}
+              {t("footerTagline")}
             </p>
           </div>
 
           <div>
             <p className="eyebrow mb-5" style={{ color: fg }}>
-              {language === "it" ? "Contatti" : "Contact"}
+              {t("eyebrowContact")}
             </p>
             <div className="space-y-4 text-sm">
               <a
@@ -59,25 +58,19 @@ export default function Footer() {
 
           <div>
             <p className="eyebrow mb-5" style={{ color: fg }}>
-              {language === "it" ? "Disponibilita" : "Availability"}
+              {t("eyebrowAvailability")}
             </p>
             <p className="text-sm" style={{ color: fg }}>
-              {language === "it"
-                ? "Usa il controllo date per verificare i calendari aggiornati."
-                : "Use the date checker to verify the latest calendars."}
+              {t("availabilityIntro")}
             </p>
-            <button
-              type="button"
-              onClick={() => document.getElementById("availability")?.scrollIntoView({ behavior: "smooth" })}
-              className="mt-6 inline-flex items-center border border-white/30 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition hover:bg-white hover:text-foreground"
-            >
-              {language === "it" ? "Verifica date" : "Check dates"}
-            </button>
+            <Link to="/disponibilita" className="btn-glass mt-6">
+              {t("checkAvailability")}
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-white/15 pt-8 text-xs" style={{ color: "rgba(250, 248, 244, 0.5)" }}>
-          <p>&copy; 2026 Palma Rosa Residence. {language === "it" ? "Tutti i diritti riservati." : "All rights reserved."}</p>
+        <div className="border-t border-white/15 pt-8 text-xs" style={{ color: "rgba(247, 243, 236, 0.5)" }}>
+          <p>&copy; 2026 Palma Rosa Residence. {t("footerCopyright")}</p>
         </div>
       </div>
     </footer>

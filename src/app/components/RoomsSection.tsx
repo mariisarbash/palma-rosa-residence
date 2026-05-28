@@ -1,43 +1,36 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { apartments, type Apartment } from "../data/apartments";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router";
+import { visibleApartments, type Apartment } from "../data/apartments";
 import { useAvailability } from "../lib/availability-context";
 import { useLanguage } from "../lib/language";
 import ApartmentModal from "./ApartmentModal";
 import RoomCard from "./RoomCard";
 
 export default function RoomsSection() {
-  const { language, t } = useLanguage();
-  const { statuses, hasSearched } = useAvailability();
-  const [selectedApartment, setSelectedApartment] = useState<Apartment | null>(null);
+  const { t } = useLanguage();
+  const { statuses } = useAvailability();
+  const [selected, setSelected] = useState<Apartment | null>(null);
 
   return (
-    <section className="bg-secondary/30 px-6 py-20">
+    <section className="bg-background px-6 py-24 md:px-12 md:py-32">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col justify-between gap-4 text-left md:flex-row md:items-end">
-          <div>
-            <h2 className="mb-4">{t("apartments")}</h2>
-            <p className="max-w-2xl text-muted-foreground">
-              {language === "it"
-                ? "10 appartamenti nel complesso Palma Rosa Residence, tutti con bagno privato."
-                : "10 apartments in the Palma Rosa Residence complex, all with private bathrooms."}
-            </p>
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-4 text-muted-foreground">{t("eyebrowApartments")}</p>
+            <h2 className="mb-5">{t("apartmentsHeading")}</h2>
+            <p className="text-muted-foreground">{t("apartmentsIntro")}</p>
           </div>
-          <span className="rounded-full bg-white px-4 py-2 text-sm text-muted-foreground shadow-sm">
-            {t("listings", { count: apartments.length })}
-          </span>
+
+          <Link to="/disponibilita" className="btn-solid self-start md:self-end">
+            {t("checkAvailability")}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
-        {hasSearched && (
-          <div className="mb-6 rounded-xl border border-border bg-white p-4 text-sm text-muted-foreground">
-            {language === "it"
-              ? "Le etichette sulle card riflettono le date cercate nella sezione disponibilita."
-              : "Card labels reflect the dates searched in the availability section."}
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {apartments.map((apartment, index) => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {visibleApartments.map((apartment, index) => (
             <motion.div
               key={apartment.id}
               initial={{ opacity: 0, y: 20 }}
@@ -48,14 +41,14 @@ export default function RoomsSection() {
               <RoomCard
                 apartment={apartment}
                 status={statuses[apartment.id] || null}
-                onOpen={() => setSelectedApartment(apartment)}
+                onOpen={() => setSelected(apartment)}
               />
             </motion.div>
           ))}
         </div>
       </div>
 
-      <ApartmentModal apartment={selectedApartment} onClose={() => setSelectedApartment(null)} />
+      <ApartmentModal apartment={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }
