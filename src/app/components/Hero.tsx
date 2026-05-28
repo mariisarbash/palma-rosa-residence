@@ -1,12 +1,13 @@
 import { motion } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLanguage } from "../lib/language";
 
 const heroImage = "/images/building/davanti_sopra.jpg";
 
 export default function Hero() {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   const scrollToRooms = () => {
     document.getElementById("rooms")?.scrollIntoView({ behavior: "smooth" });
@@ -17,52 +18,58 @@ export default function Hero() {
       <div className="absolute inset-0">
         <ImageWithFallback
           src={heroImage}
-          alt="Palma Rosa Residence - Vista dall'alto"
+          alt="Palma Rosa Residence"
           className="h-full w-full object-cover"
         />
-        {/* Subtle bottom-weighted vignette, editorial — not the heavy gradient. */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/55" />
+        {/* Two-tone soft gradient — keeps body crisp, anchors text bottom */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/15 via-transparent to-black/55" />
       </div>
 
-      <div className="relative z-10 flex min-h-[100dvh] w-full flex-col px-6 pb-24 pt-24 text-white md:px-12 md:pb-32">
-        {/* Bottom-left wordmark + tagline, alla Ray */}
+      <div className="relative z-10 flex min-h-[100dvh] w-full flex-col px-6 pb-16 pt-24 text-white md:px-12 md:pb-20">
         <div className="mt-auto max-w-3xl">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="eyebrow mb-6 text-white/80"
+            className="eyebrow mb-5 text-white/85"
           >
-            Via Privata Mario Bianco, Milano
+            {t("heroAddressEyebrow")}
           </motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6 text-white"
           >
-            Palma Rosa Residence
+            Palma Rosa <span className="font-display-italic">Residence</span>
           </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-10 max-w-xl text-base text-white/85 md:text-lg"
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="mb-10 max-w-xl text-base text-white/90 md:text-lg"
           >
-            {language === "it"
-              ? "Dieci appartamenti con bagno privato, a pochi minuti dalla M2."
-              : "Ten apartments with private bathrooms, minutes from the M2 line."}
+            {t("heroTagline")}
           </motion.p>
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            onClick={scrollToRooms}
-            className="inline-flex items-center gap-3 border border-white/40 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-foreground"
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-3"
           >
-            {t("discover")}
-            <ChevronDown className="h-4 w-4" />
-          </motion.button>
+            <Link to="/disponibilita" className="btn-glass">
+              {t("heroCtaCheck")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <button onClick={scrollToRooms} className="btn-glass">
+              {t("heroCtaExplore")}
+              <ChevronDown className="h-4 w-4" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </div>

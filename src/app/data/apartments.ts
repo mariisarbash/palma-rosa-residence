@@ -14,6 +14,12 @@ export type Apartment = {
   };
   icalId: string;
   alwaysAvailable: boolean;
+  /**
+   * When true the apartment is kept in the dataset but filtered out of the
+   * public UI (listings, search, count). Used for B5 until photos and
+   * availability are ready.
+   */
+  hidden?: boolean;
 };
 
 export const WHATSAPP_NUMBER = "393283255279";
@@ -340,8 +346,17 @@ export const apartments: Apartment[] = [
     },
     icalId: "b5",
     alwaysAvailable: true,
+    // Hidden until photos and availability are confirmed. Flip this back to
+    // false (or remove the field) when ready to publish.
+    hidden: true,
   },
 ];
+
+/**
+ * The list to render in the public UI. B5 (and any future placeholder) is
+ * kept in `apartments` for data integrity but excluded here.
+ */
+export const visibleApartments: Apartment[] = apartments.filter((a) => !a.hidden);
 
 export function getApartmentFloor(apt: Apartment) {
   if (apt.id.startsWith("a")) return "ground" as const;

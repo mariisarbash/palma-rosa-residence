@@ -1,0 +1,125 @@
+/*
+ * Custom skin for react-day-picker v8 — soft modern, matches the v2 theme.
+ * Scoped via .prr-daypicker on the wrapper.
+ */
+
+.prr-daypicker .rdp {
+  --rdp-cell-size: 44px;
+  --rdp-accent-color: var(--foreground);
+  --rdp-background-color: var(--secondary);
+  --rdp-accent-color-dark: var(--foreground);
+  --rdp-background-color-dark: var(--secondary);
+  --rdp-outline: 2px solid var(--ring);
+  --rdp-outline-selected: 2px solid var(--foreground);
+  margin: 0;
+}
+
+.prr-daypicker .rdp-months {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.prr-daypicker .rdp-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem 1rem;
+}
+
+.prr-daypicker .rdp-caption_label {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  text-transform: capitalize;
+}
+
+.prr-daypicker .rdp-nav_button {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.prr-daypicker .rdp-nav_button:hover {
+  background: var(--muted);
+  border-color: rgba(31, 27, 22, 0.2);
+}
+
+.prr-daypicker .rdp-head_cell {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding-bottom: 0.5rem;
+}
+
+.prr-daypicker .rdp-cell {
+  padding: 2px;
+}
+
+.prr-daypicker .rdp-day {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.prr-daypicker .rdp-day:hover:not([disabled]):not(.rdp-day_selected) {
+  background: var(--muted);
+}
+
+.prr-daypicker .rdp-day_today:not(.rdp-day_selected) {
+  outline: 1px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.prr-daypicker .rdp-day_outside {
+  color: rgba(31, 27, 22, 0.25);
+}
+
+.prr-daypicker .rdp-day_disabled {
+  color: rgba(31, 27, 22, 0.25);
+  cursor: not-allowed;
+}
+
+/* Range fill */
+.prr-daypicker .rdp-day_range_middle {
+  background: var(--secondary);
+  color: var(--foreground);
+  border-radius: 0;
+}
+
+.prr-daypicker .rdp-day_range_start,
+.prr-daypicker .rdp-day_range_end,
+.prr-daypicker .rdp-day_selected {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.prr-daypicker .rdp-day_range_start {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.prr-daypicker .rdp-day_range_end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.prr-daypicker .rdp-day_range_start.rdp-day_range_end {
+  border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+  .prr-daypicker .rdp { --rdp-cell-size: 48px; }
+  .prr-daypicker .rdp-day { width: 44px; height: 44px; }
+}

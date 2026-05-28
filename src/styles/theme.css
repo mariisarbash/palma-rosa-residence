@@ -1,104 +1,99 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Palma Rosa Residence — design system.
+ * Palma Rosa Residence — design system v2.
  *
- * Palette: warm off-white surfaces, dark warm foreground, no pink.
- * `--primary` is reused by shadcn for CTA, icon boxes, footer:
- * we make it the dark warm so existing `bg-primary` classes
- * read as elegant nero/inchiostro rather than coral.
+ * Direction: soft, modern, expressive. Warm neutral palette, generous
+ * curves, frosted-glass interactive controls. No pink/coral.
  */
 
 :root {
   --font-size: 16px;
 
-  /* Surfaces */
-  --background: #FAF8F4;       /* warm off-white, page base */
-  --foreground: #1A1814;       /* dark warm, near-black */
+  /* Surfaces — warmer than v1, with a touch of sand */
+  --background: #F7F3EC;       /* warm sand, page base */
+  --foreground: #1F1B16;       /* dark warm ink */
   --card: #FFFFFF;
-  --card-foreground: #1A1814;
+  --card-foreground: #1F1B16;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1814;
+  --popover-foreground: #1F1B16;
 
-  /* Primary = dark warm (used for CTA, footer, icon boxes via shadcn) */
-  --primary: #1A1814;
-  --primary-foreground: #FAF8F4;
+  --primary: #1F1B16;
+  --primary-foreground: #F7F3EC;
 
-  /* Secondary surface = deeper cream — for full-width "section" backgrounds */
-  --secondary: #EFE9DE;
-  --secondary-foreground: #1A1814;
+  --secondary: #ECE4D6;         /* deeper cream band */
+  --secondary-foreground: #1F1B16;
 
-  /* Muted (subtler bg + tertiary text) */
-  --muted: #F2EDE3;
-  --muted-foreground: #6B635A;
+  --muted: #EFEAE0;
+  --muted-foreground: #6F6557;
 
-  /* Accent = warm terracotta, used sparingly */
-  --accent: #B8896B;
-  --accent-foreground: #FAF8F4;
+  /* Soft terracotta accent, used sparingly */
+  --accent: #C2876A;
+  --accent-foreground: #FFFFFF;
 
   --destructive: #B43A2E;
   --destructive-foreground: #FAF8F4;
 
-  --border: rgba(26, 24, 20, 0.10);
+  --border: rgba(31, 27, 22, 0.10);
   --input: transparent;
   --input-background: #FFFFFF;
-  --switch-background: #D8D1C3;
+  --switch-background: #D8D0C0;
 
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: rgba(26, 24, 20, 0.35);
+  --ring: rgba(31, 27, 22, 0.35);
 
-  --chart-1: #B8896B;
-  --chart-2: #6B635A;
-  --chart-3: #1A1814;
+  --chart-1: #C2876A;
+  --chart-2: #6F6557;
+  --chart-3: #1F1B16;
   --chart-4: #D8C2A8;
   --chart-5: #8B7355;
 
-  --radius: 0.25rem;            /* meno "appy", più editoriale */
+  --radius: 1rem;               /* 16px — soft, contemporary */
 
-  --sidebar: #FAF8F4;
-  --sidebar-foreground: #1A1814;
-  --sidebar-primary: #1A1814;
-  --sidebar-primary-foreground: #FAF8F4;
-  --sidebar-accent: #F2EDE3;
-  --sidebar-accent-foreground: #1A1814;
-  --sidebar-border: rgba(26, 24, 20, 0.10);
-  --sidebar-ring: rgba(26, 24, 20, 0.35);
+  --sidebar: #F7F3EC;
+  --sidebar-foreground: #1F1B16;
+  --sidebar-primary: #1F1B16;
+  --sidebar-primary-foreground: #F7F3EC;
+  --sidebar-accent: #EFEAE0;
+  --sidebar-accent-foreground: #1F1B16;
+  --sidebar-border: rgba(31, 27, 22, 0.10);
+  --sidebar-ring: rgba(31, 27, 22, 0.35);
 }
 
 .dark {
-  --background: #1A1814;
-  --foreground: #FAF8F4;
-  --card: #211E18;
-  --card-foreground: #FAF8F4;
-  --popover: #211E18;
-  --popover-foreground: #FAF8F4;
-  --primary: #FAF8F4;
-  --primary-foreground: #1A1814;
-  --secondary: #2A261F;
-  --secondary-foreground: #FAF8F4;
-  --muted: #2A261F;
+  --background: #1F1B16;
+  --foreground: #F7F3EC;
+  --card: #2A2620;
+  --card-foreground: #F7F3EC;
+  --popover: #2A2620;
+  --popover-foreground: #F7F3EC;
+  --primary: #F7F3EC;
+  --primary-foreground: #1F1B16;
+  --secondary: #2A2620;
+  --secondary-foreground: #F7F3EC;
+  --muted: #2A2620;
   --muted-foreground: #B5AB99;
-  --accent: #B8896B;
-  --accent-foreground: #FAF8F4;
+  --accent: #C2876A;
+  --accent-foreground: #FFFFFF;
   --destructive: #B43A2E;
-  --destructive-foreground: #FAF8F4;
-  --border: rgba(250, 248, 244, 0.12);
-  --input: rgba(250, 248, 244, 0.12);
-  --ring: rgba(250, 248, 244, 0.35);
-  --chart-1: #B8896B;
+  --destructive-foreground: #F7F3EC;
+  --border: rgba(247, 243, 236, 0.12);
+  --input: rgba(247, 243, 236, 0.12);
+  --ring: rgba(247, 243, 236, 0.35);
+  --chart-1: #C2876A;
   --chart-2: #D8C2A8;
-  --chart-3: #FAF8F4;
+  --chart-3: #F7F3EC;
   --chart-4: #8B7355;
-  --chart-5: #6B635A;
-  --sidebar: #1A1814;
-  --sidebar-foreground: #FAF8F4;
-  --sidebar-primary: #FAF8F4;
-  --sidebar-primary-foreground: #1A1814;
-  --sidebar-accent: #2A261F;
-  --sidebar-accent-foreground: #FAF8F4;
-  --sidebar-border: rgba(250, 248, 244, 0.12);
-  --sidebar-ring: rgba(250, 248, 244, 0.35);
+  --chart-5: #6F6557;
+  --sidebar: #1F1B16;
+  --sidebar-foreground: #F7F3EC;
+  --sidebar-primary: #F7F3EC;
+  --sidebar-primary-foreground: #1F1B16;
+  --sidebar-accent: #2A2620;
+  --sidebar-accent-foreground: #F7F3EC;
+  --sidebar-border: rgba(247, 243, 236, 0.12);
+  --sidebar-ring: rgba(247, 243, 236, 0.35);
 }
 
 @theme inline {
@@ -128,10 +123,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 1px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -157,43 +152,38 @@
   }
 
   /*
-   * Editorial typography scale.
-   * Headings use Fraunces (.font-serif), body uses Inter.
+   * Modern sans-serif scale. Headings use General Sans 500–600
+   * with subtle negative tracking on display sizes.
    */
   h1 {
-    font-family: 'Fraunces', 'Times New Roman', serif;
-    font-optical-sizing: auto;
-    font-variation-settings: 'opsz' 144;
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
-    font-weight: 400;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    font-weight: 500;
     line-height: 1.05;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 
   h2 {
-    font-family: 'Fraunces', 'Times New Roman', serif;
-    font-optical-sizing: auto;
-    font-variation-settings: 'opsz' 144;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    font-weight: 400;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+    font-weight: 500;
     line-height: 1.15;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
   }
 
   h3 {
-    font-family: 'Fraunces', 'Times New Roman', serif;
-    font-optical-sizing: auto;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: 400;
-    line-height: 1.25;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    font-weight: 500;
+    line-height: 1.3;
     letter-spacing: -0.01em;
   }
 
   h4 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     line-height: 1.4;
   }
 
@@ -201,20 +191,12 @@
     line-height: 1.65;
   }
 
-  label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    line-height: 1.4;
-  }
-
   button {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 0.9375rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
     line-height: 1.4;
+    letter-spacing: 0;
   }
 
   input {
@@ -228,3 +210,73 @@
     color: var(--background);
   }
 }
+
+/* Frosted-glass button — the "mirror" pill the user asked back for */
+.btn-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    0 4px 18px rgba(0, 0, 0, 0.18);
+}
+.btn-glass:active {
+  transform: translateY(1px);
+}
+
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  background: var(--foreground);
+  color: var(--background);
+  border: 1px solid var(--foreground);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.btn-solid:hover { opacity: 0.92; }
+.btn-solid:active { transform: translateY(1px); }
+.btn-solid:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.btn-outline:hover {
+  background: var(--muted);
+  border-color: rgba(31, 27, 22, 0.2);
+}
+.btn-outline:active { transform: translateY(1px); }

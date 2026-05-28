@@ -54,7 +54,7 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/70 p-4 backdrop-blur-sm" role="presentation" onMouseDown={onClose}>
       <div
-        className="relative grid max-h-[92dvh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white shadow-2xl md:grid-cols-[1.25fr_0.75fr]"
+        className="relative grid max-h-[92dvh] w-full max-w-6xl overflow-hidden rounded-3xl bg-card shadow-2xl md:grid-cols-[1.25fr_0.75fr]"
         role="dialog"
         aria-modal="true"
         aria-label={`${t("apartment")} ${apartment.label}`}
@@ -107,8 +107,8 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
 
         <div className="overflow-y-auto p-6 md:p-8">
           <div className="mb-6">
-            <p className="mb-2 text-sm uppercase tracking-[0.18em] text-primary">{t("details")}</p>
-            <h2 className="text-3xl">{t("apartment")} {apartment.label}</h2>
+            <p className="eyebrow mb-3 text-muted-foreground">{t("details")}</p>
+            <h2>{t("apartment")} {apartment.label}</h2>
             <p className="mt-2 text-muted-foreground">{apartment.address}</p>
           </div>
 
@@ -156,7 +156,7 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
               href={RESIDENCE_MAP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-medium underline decoration-1 underline-offset-4"
             >
               <MapPin className="h-4 w-4" />
               {t("mapLink")}
@@ -164,7 +164,7 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
           </section>
 
           {isUnavailable ? (
-            <span className="block rounded-lg bg-secondary px-5 py-4 text-center text-muted-foreground">
+            <span className="block rounded-2xl bg-secondary px-5 py-4 text-center text-muted-foreground">
               {t("notAvailableSelectedDates")}
             </span>
           ) : (
@@ -172,9 +172,9 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
               href={buildWhatsAppHref(apartment, language)}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 py-4 text-primary-foreground transition hover:opacity-90 active:translate-y-px"
+              className="btn-solid w-full"
             >
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="h-4 w-4" />
               {t("contactWhatsApp")}
             </a>
           )}

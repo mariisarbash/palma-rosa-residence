@@ -21,59 +21,68 @@ This document is the source of truth for the public website. Update it whenever 
 - Do not publish precise walking times unless they have been verified.
 - Do not add fake phone numbers, emails, ratings, restaurants, reviews, room sizes, cleaning schedules, AC, or security claims.
 
-## Visual Direction
+## Visual Direction (v2 — soft, modern, expressive)
 
-- Overall feeling: refined residential hospitality, warm, editorial, minimal. Inspired by Ray-is-a-place, Kinn Collective, Daniel Blue.
-- Hero is full-bleed photo with the wordmark anchored bottom-left and a soft bottom-weighted vignette — no heavy gradient.
-- Photo surfaces are pure rectangles (no rounded corners). Radius is reserved for small interactive controls (4–6px).
-- Color does not come from the brand — it comes from the real photography. The UI is built on warm neutrals.
+- Overall feeling: refined residential hospitality, warm, contemporary, soft. Inspired by Ray-is-a-place, Kinn Collective, Daniel Blue.
+- Hero is full-bleed photo with the wordmark anchored bottom-left, a two-tone soft gradient, and frosted-glass pill buttons.
+- Photo surfaces use a generous `rounded-3xl` radius (24px) — soft contemporary, not flat editorial.
+- Color does not come from the brand — it comes from the real photography. UI is built on warm neutrals.
+- Buttons follow three named classes in `theme.css`:
+  - `.btn-glass` — frosted-glass pill (backdrop-blur + inset highlight). Used on dark photo backgrounds.
+  - `.btn-solid` — ink-black pill, primary CTA on light surfaces.
+  - `.btn-outline` — neutral pill, secondary CTA.
 
 ### Palette (defined in `src/styles/theme.css`)
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| `--background` | `#FAF8F4` | Page base, warm off-white |
-| `--foreground` | `#1A1814` | Body text, headings, primary CTA fill |
-| `--primary` / `--primary-foreground` | `#1A1814` / `#FAF8F4` | shadcn CTA, footer, icon boxes |
-| `--secondary` | `#EFE9DE` | Cream-tone full-width section bands |
-| `--muted` / `--muted-foreground` | `#F2EDE3` / `#6B635A` | Subtler bg + secondary copy |
-| `--accent` | `#B8896B` | Warm terracotta, used sparingly |
-| `--border` | `rgba(26,24,20,0.10)` | Hairlines |
+| `--background` | `#F7F3EC` | Page base, warm sand |
+| `--foreground` | `#1F1B16` | Body text, headings, primary CTA fill |
+| `--primary` / `--primary-foreground` | `#1F1B16` / `#F7F3EC` | shadcn CTA, footer, icon boxes |
+| `--secondary` | `#ECE4D6` | Cream-tone full-width section bands |
+| `--muted` / `--muted-foreground` | `#EFEAE0` / `#6F6557` | Subtler bg + secondary copy |
+| `--accent` | `#C2876A` | Soft terracotta, used sparingly |
+| `--border` | `rgba(31,27,22,0.10)` | Hairlines |
+| `--radius` | `1rem` (16px) | Default; pill controls use `9999px` |
 
-Avoid: any pink/coral, heavy gradients, drop shadows on photos, fake stock imagery, overly promotional copy.
+Avoid: any pink/coral, heavy gradients, fake stock imagery, overly promotional copy.
 
 ### Typography
 
-- Headings: **Fraunces** (variable, optical-sizing on, opsz 144 for display) at weight 400.
-- Body and UI: **Inter** 400/500.
+- Primary family: **General Sans** (Fontshare), weights 400 / 500 / 600 / 700.
+- Wordmark "Residence" + occasional accents: **Cormorant Garamond** italic (`.font-display-italic`).
 - Scale (see `theme.css` `@layer base`):
-  - h1 `clamp(2.25rem, 5vw, 3.75rem)`, tracking `-0.02em`, line-height 1.05.
-  - h2 `clamp(1.75rem, 3.5vw, 2.5rem)`, tracking `-0.015em`.
-  - h3 `clamp(1.25rem, 2vw, 1.5rem)`.
-  - h4 / labels / eyebrows: Inter 12px uppercase, tracking `0.12em`–`0.18em`.
-- A reusable `.eyebrow` class is provided in `fonts.css` for section labels.
+  - h1 `clamp(2.5rem, 5.5vw, 4.25rem)`, weight 500, tracking `-0.025em`, line-height 1.05.
+  - h2 `clamp(1.875rem, 3.5vw, 2.75rem)`, weight 500.
+  - h3 `clamp(1.125rem, 1.8vw, 1.375rem)`, weight 500.
+  - h4 / labels: General Sans 14px medium.
+- `.eyebrow` utility: General Sans 12px uppercase, tracking `0.16em`.
 
 ### Motion
 
-- Use `motion/react` only. Default in-view entrance: opacity 0 → 1 + y 24 → 0, 0.7s, single shot (`viewport={{ once: true }}`).
-- Hover transforms on images stay subtle: `scale-[1.03]` over 700–1000ms. No dramatic 1.1 scales.
+- Use `motion/react` only. Default in-view entrance: opacity 0 → 1 + y 18–24 → 0, 0.4–0.7s, single shot (`viewport={{ once: true }}`).
+- Hover transforms stay subtle: cards `-translate-y-0.5`, images `scale-[1.04]` over 700–1000ms.
+
+## Routing
+
+The site is a 2-route SPA (React Router):
+
+- `/` — Landing. Presentation-only: Hero → Gallery → Services → Apartments → NearbyMap → Footer. Includes a "Check availability" CTA in the nav and below the Apartments grid.
+- `/disponibilita` (alias `/availability`) — Availability page. Large `DateRangePicker` (react-day-picker) above the apartments grid, status badges on each card, WhatsApp CTA in the modal disabled when an apartment is unavailable for the chosen dates.
+
+Shared chrome (Navigation + Footer + scroll reset) lives in `SiteLayout.tsx`.
 
 ## Layout
 
 - First viewport must clearly show the Palma Rosa Residence name and real building imagery.
 - Hero uses `min-h-[100dvh]`, never fixed `h-screen`, to avoid mobile browser jump.
-- Page order:
-  1. Navigation
-  2. Hero
-  3. Residence gallery
-  4. Confirmed services
-  5. Apartments
-  6. Availability checker
-  7. Transport
-  8. Nearby references
-  9. Footer
 - Apartment cards use real apartment photos when available. Missing photos use a clear placeholder state.
 - Details open in a modal with gallery, metadata, services, location, and WhatsApp CTA.
+- The neighbourhood is shown via an interactive **Leaflet + OpenStreetMap** component (`NearbyMap.tsx`) with category filter chips (transport, university, supermarket, pharmacy, breakfast, hospital). POI data lives in `src/app/data/poi.ts`.
+
+## Hidden apartments
+
+The `hidden` flag on an apartment record removes it from every visible surface (homepage listing, availability search and count) while keeping the entry for future re-publish. B5 is currently hidden until photos and availability are confirmed; flip `hidden: false` (or remove the key) to bring it back.
 
 ## Interaction Rules
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import { apartments, type ApartmentStatus } from "../data/apartments";
+import { visibleApartments as apartments, type ApartmentStatus } from "../data/apartments";
 import { fetchAvailability, isAvailable } from "./availability";
 
 type StatusMap = Record<string, ApartmentStatus>;

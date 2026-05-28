@@ -45,6 +45,77 @@ const dictionary = {
     sofaBed: "Divano letto",
     transport: "Trasporti",
     viewDetails: "Vedi dettagli",
+
+    // Eyebrows & section labels
+    eyebrowResidence: "Il residence",
+    eyebrowServices: "Servizi inclusi",
+    eyebrowApartments: "Appartamenti",
+    eyebrowAvailability: "Disponibilita",
+    eyebrowNearby: "Dintorni",
+    eyebrowContact: "Contatti",
+
+    // Hero
+    heroTagline: "Dieci appartamenti con bagno privato, a pochi minuti dalla M2.",
+    heroAddressEyebrow: "Via Privata Mario Bianco, Milano",
+    heroCtaCheck: "Verifica disponibilita",
+    heroCtaExplore: "Scopri il residence",
+
+    // Gallery / Residence
+    galleryHeading: "Scopri il residence",
+    galleryIntro: "Esterni e interni reali del complesso in Via Privata Mario Bianco.",
+    captionFacade: "Facciata",
+    captionAerial: "Vista dall'alto",
+    captionApartmentA1: "Appartamento A1",
+    captionApartmentB1: "Appartamento B1",
+
+    // Services
+    servicesHeading: "Servizi inclusi",
+    servicesIntro: "Solo informazioni confermate dai dati attuali del residence.",
+    serviceBathDesc: "Ogni appartamento ha il proprio bagno privato",
+    serviceSofaDesc: "Soluzioni pensate per ospitare fino a 2 persone",
+    serviceWifiDesc: "Connessione disponibile nel residence",
+    serviceLaundryDesc: "Lavatrice e asciugatrice a disposizione",
+    serviceElevatorDesc: "Comodo accesso agli appartamenti del primo piano",
+    serviceTransportDesc: "Vicino a Piola, Lambrate e Udine sulla M2",
+    serviceLaundry: "Lavanderia",
+    serviceWifi: "Wi-Fi",
+    serviceElevator: "Ascensore",
+    serviceTransport: "Metro e treni",
+
+    // Apartments listing
+    apartmentsHeading: "Appartamenti",
+    apartmentsIntro: "10 appartamenti nel complesso Palma Rosa Residence, tutti con bagno privato.",
+    apartmentsCount: "{count} appartamenti",
+
+    // Availability page
+    availabilityHeading: "Verifica le date",
+    availabilityIntro: "Seleziona check-in e check-out per vedere in tempo reale quali appartamenti sono liberi.",
+    availabilityResult: "{count} appartamenti disponibili nelle date selezionate.",
+    availabilityNoResult: "Nessun appartamento risulta disponibile nelle date selezionate.",
+    availabilityCheckFailed: "Non siamo riusciti a contattare i calendari. Riprova fra qualche istante.",
+    selectDates: "Seleziona le date",
+    nights: "{count} notti",
+    night: "{count} notte",
+
+    // Nearby map
+    nearbyHeading: "La zona, in un colpo d'occhio",
+    nearbyIntro: "Citta Studi: universita, metro e tutto quello che ti serve nei dintorni.",
+    nearbyOpenMaps: "Apri su Google Maps",
+    poiResidence: "Il residence",
+    poiTransport: "Metro e treni",
+    poiUniversity: "Universita",
+    poiSupermarket: "Supermercati",
+    poiPharmacy: "Farmacia",
+    poiBreakfast: "Bar / colazione",
+    poiHospital: "Pronto soccorso",
+
+    // Footer
+    footerTagline: "Appartamenti con bagno privato vicino alla M2 a Milano.",
+    footerCopyright: "Tutti i diritti riservati.",
+
+    // Misc
+    backToHome: "Torna alla home",
+    pageNotFound: "Pagina non trovata",
   },
   en: {
     apartment: "Apartment",
@@ -84,6 +155,68 @@ const dictionary = {
     sofaBed: "Sofa bed",
     transport: "Transport",
     viewDetails: "View details",
+
+    eyebrowResidence: "The residence",
+    eyebrowServices: "Included services",
+    eyebrowApartments: "Apartments",
+    eyebrowAvailability: "Availability",
+    eyebrowNearby: "Nearby",
+    eyebrowContact: "Contact",
+
+    heroTagline: "Ten apartments with private bathrooms, minutes from the M2 line.",
+    heroAddressEyebrow: "Via Privata Mario Bianco, Milan",
+    heroCtaCheck: "Check availability",
+    heroCtaExplore: "Explore the residence",
+
+    galleryHeading: "Discover the residence",
+    galleryIntro: "Real exterior and interior views from Via Privata Mario Bianco.",
+    captionFacade: "Facade",
+    captionAerial: "Aerial view",
+    captionApartmentA1: "Apartment A1",
+    captionApartmentB1: "Apartment B1",
+
+    servicesHeading: "Included services",
+    servicesIntro: "Only services confirmed by the current residence data.",
+    serviceBathDesc: "Each apartment has its own private bathroom",
+    serviceSofaDesc: "Set up to host up to 2 people comfortably",
+    serviceWifiDesc: "Internet available throughout the residence",
+    serviceLaundryDesc: "Shared washing machine and dryer on site",
+    serviceElevatorDesc: "Elevator access for first-floor apartments",
+    serviceTransportDesc: "Close to Piola, Lambrate, and Udine on the M2 line",
+    serviceLaundry: "Laundry",
+    serviceWifi: "Wi-Fi",
+    serviceElevator: "Elevator",
+    serviceTransport: "Metro & rail",
+
+    apartmentsHeading: "Apartments",
+    apartmentsIntro: "10 apartments in the Palma Rosa Residence complex, each with a private bathroom.",
+    apartmentsCount: "{count} apartments",
+
+    availabilityHeading: "Check your dates",
+    availabilityIntro: "Select check-in and check-out to see in real time which apartments are free.",
+    availabilityResult: "{count} apartments available for the selected dates.",
+    availabilityNoResult: "No apartments appear available for the selected dates.",
+    availabilityCheckFailed: "We couldn't reach the calendars. Please try again in a moment.",
+    selectDates: "Pick your dates",
+    nights: "{count} nights",
+    night: "{count} night",
+
+    nearbyHeading: "The neighbourhood at a glance",
+    nearbyIntro: "Citta Studi: universities, metro stops, and everyday essentials a short walk away.",
+    nearbyOpenMaps: "Open in Google Maps",
+    poiResidence: "The residence",
+    poiTransport: "Metro & rail",
+    poiUniversity: "Universities",
+    poiSupermarket: "Supermarkets",
+    poiPharmacy: "Pharmacy",
+    poiBreakfast: "Cafés / breakfast",
+    poiHospital: "Emergency room",
+
+    footerTagline: "Apartments with private bathrooms near the M2 line in Milan.",
+    footerCopyright: "All rights reserved.",
+
+    backToHome: "Back to home",
+    pageNotFound: "Page not found",
   },
 } as const;
 
