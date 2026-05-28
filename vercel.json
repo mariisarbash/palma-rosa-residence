@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "buildCommand": "cd \"Palma Rosa Residence Website\" && npm install && npm run build",
+  "outputDirectory": "Palma Rosa Residence Website/dist"
+}

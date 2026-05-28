@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#F0EDE8"/>
+  <!-- House outline -->
+  <path d="M100 55 L145 90 L145 150 L55 150 L55 90 Z" stroke="#C4BFB8" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <path d="M85 100 L85 90 L115 90 L115 100 Z" stroke="#C4BFB8" stroke-width="2" fill="none"/>
+  <!-- Door -->
+  <rect x="87" y="120" width="26" height="30" rx="2" stroke="#C4BFB8" stroke-width="2" fill="none"/>
+  <!-- Window -->
+  <rect x="62" y="108" width="20" height="18" rx="2" stroke="#C4BFB8" stroke-width="2" fill="none"/>
+  <line x1="72" y1="108" x2="72" y2="126" stroke="#C4BFB8" stroke-width="1.5"/>
+  <line x1="62" y1="117" x2="82" y2="117" stroke="#C4BFB8" stroke-width="1.5"/>
+  <rect x="118" y="108" width="20" height="18" rx="2" stroke="#C4BFB8" stroke-width="2" fill="none"/>
+  <line x1="128" y1="108" x2="128" y2="126" stroke="#C4BFB8" stroke-width="1.5"/>
+  <line x1="118" y1="117" x2="138" y2="117" stroke="#C4BFB8" stroke-width="1.5"/>
+</svg>

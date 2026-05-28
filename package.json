@@ -1,0 +1,12 @@
+{
+  "name": "palma-rosa-residence",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix \"Palma Rosa Residence Website\" run dev",
+    "build": "npm --prefix \"Palma Rosa Residence Website\" run build"
+  },
+  "dependencies": {
+    "node-ical": "^0.19.0"
+  }
+}
