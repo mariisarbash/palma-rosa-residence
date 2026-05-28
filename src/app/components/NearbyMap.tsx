@@ -26,30 +26,58 @@ const ICONS: Record<PoiCategory, typeof Home> = {
   hospital: HeartPulse,
 };
 
+/** Inline SVG for the lucide `Home` icon — used for the residence pin. */
+const HOUSE_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1Z"/>
+  </svg>`;
+
+/** Small coloured dot used for every non-residence POI. */
+const DOT_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="4" fill="currentColor"/>
+  </svg>`;
+
 /**
- * Custom DivIcon factory — gives every category a coloured circular pin
- * styled with our CSS vars instead of the default Leaflet PNG markers.
+ * Custom DivIcon factory. The residence gets a larger pill with a house
+ * glyph; everything else gets a small neutral dot — the residence must
+ * read instantly as the anchor of the map.
  */
-function makeIcon(category: PoiCategory, isResidence = false) {
-  const bg = isResidence ? "var(--foreground)" : "var(--card)";
-  const ring = isResidence ? "var(--foreground)" : "rgba(31,27,22,0.18)";
-  const dot = isResidence ? "var(--background)" : "var(--foreground)";
-  const size = isResidence ? 40 : 30;
+function makeIcon(_category: PoiCategory, isResidence = false) {
+  if (isResidence) {
+    return L.divIcon({
+      className: "prr-pin prr-pin--residence",
+      html: `
+        <span style="
+          position:relative;
+          display:flex; align-items:center; justify-content:center;
+          width:44px; height:44px; border-radius:9999px;
+          background:#1F1B16; color:#F7F3EC;
+          border:3px solid #F7F3EC;
+          box-shadow: 0 6px 22px rgba(0,0,0,0.32);
+        ">${HOUSE_SVG}</span>
+      `,
+      iconSize: [44, 44],
+      iconAnchor: [22, 22],
+      popupAnchor: [0, -22],
+    });
+  }
 
   return L.divIcon({
     className: "prr-pin",
     html: `
       <span style="
         display:flex; align-items:center; justify-content:center;
-        width:${size}px; height:${size}px; border-radius:9999px;
-        background:${bg}; border:1.5px solid ${ring};
-        box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-        color:${dot}; font-weight:600; font-size:${isResidence ? 14 : 12}px;
-      ">${category[0].toUpperCase()}</span>
+        width:24px; height:24px; border-radius:9999px;
+        background:#FFFFFF; color:#1F1B16;
+        border:1.5px solid rgba(31,27,22,0.20);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.14);
+      ">${DOT_SVG}</span>
     `,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-    popupAnchor: [0, -size / 2],
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12],
   });
 }
 

@@ -28,7 +28,8 @@ export type Poi = {
   gmaps: string;
 };
 
-export const RESIDENCE_COORDS = { lat: 45.4815, lng: 9.2347 };
+// Verified from the canonical Google Maps place page for the residence.
+export const RESIDENCE_COORDS = { lat: 45.4880303, lng: 9.2291348 };
 
 export const pois: Poi[] = [
   // The residence itself
@@ -40,10 +41,14 @@ export const pois: Poi[] = [
       it: "Via Privata Mario Bianco, 13/1 — Milano",
       en: "Via Privata Mario Bianco, 13/1 — Milan",
     },
-    lat: 45.4815,
-    lng: 9.2347,
+    lat: 45.4880303,
+    lng: 9.2291348,
     gmaps: "https://maps.app.goo.gl/vaxKnUUxJBmvieHL9",
   },
+
+  // NOTE — Coordinates below are first-pass estimates around Citta Studi
+  // pending verification. The exact location is always one click away via
+  // the `gmaps` link in the popup. Refine these as needed.
 
   // Metro (M2 green line)
   {
@@ -63,8 +68,8 @@ export const pois: Poi[] = [
       it: "Metro M2 e stazione ferroviaria",
       en: "M2 metro and railway station",
     },
-    lat: 45.4838,
-    lng: 9.2398,
+    lat: 45.4842,
+    lng: 9.2387,
     gmaps: "https://maps.app.goo.gl/MGcZ4Vd9hxQyhwTm6",
   },
   {
@@ -72,8 +77,8 @@ export const pois: Poi[] = [
     category: "transport",
     name: "M2 Udine",
     description: { it: "Metropolitana linea verde", en: "Green line metro" },
-    lat: 45.4892,
-    lng: 9.2358,
+    lat: 45.4895,
+    lng: 9.2306,
     gmaps: "https://maps.app.goo.gl/Kr3FmDdY8M2QkqTH6",
   },
 
@@ -86,8 +91,8 @@ export const pois: Poi[] = [
       it: "Campus storico del Politecnico",
       en: "Politecnico's main campus",
     },
-    lat: 45.4781,
-    lng: 9.2273,
+    lat: 45.4787,
+    lng: 9.2276,
     gmaps: "https://maps.app.goo.gl/kUmEy7jEL8bcEVq7A",
   },
   {
@@ -98,46 +103,46 @@ export const pois: Poi[] = [
       it: "Edifici della Statale in zona Città Studi",
       en: "Statale buildings in the Città Studi area",
     },
-    lat: 45.476,
-    lng: 9.234,
+    lat: 45.4768,
+    lng: 9.2350,
     gmaps: "https://maps.app.goo.gl/kNYXh8r8gZjR3GKv5",
   },
 
   // Supermarkets
   {
-    id: "supermarket-1",
+    id: "supermarket-undercasa",
     category: "supermarket",
     name: "Supermercato (sotto casa)",
     description: {
       it: "Spesa quotidiana proprio sotto il residence",
       en: "Daily groceries right next to the residence",
     },
-    lat: 45.4816,
-    lng: 9.2351,
+    lat: 45.4882,
+    lng: 9.2295,
     gmaps: "https://maps.app.goo.gl/6xBDhszWxKh5RZF37",
   },
   {
     id: "supermarket-2",
     category: "supermarket",
     name: "Supermercato",
-    lat: 45.4807,
-    lng: 9.2334,
+    lat: 45.4860,
+    lng: 9.2270,
     gmaps: "https://maps.app.goo.gl/GQd9vZKT227iTWxL9",
   },
   {
     id: "supermarket-3",
     category: "supermarket",
     name: "Supermercato",
-    lat: 45.4823,
-    lng: 9.2378,
+    lat: 45.4895,
+    lng: 9.2330,
     gmaps: "https://maps.app.goo.gl/eSSMQ2cz4H5Saf7Q9",
   },
   {
     id: "supermarket-4",
     category: "supermarket",
     name: "Supermercato",
-    lat: 45.4801,
-    lng: 9.2362,
+    lat: 45.4870,
+    lng: 9.2340,
     gmaps: "https://maps.app.goo.gl/nPaFqPLdNCnhDV2m6",
   },
 
@@ -150,8 +155,8 @@ export const pois: Poi[] = [
       it: "A pochi metri dal residence",
       en: "Steps from the residence",
     },
-    lat: 45.4814,
-    lng: 9.2353,
+    lat: 45.4881,
+    lng: 9.2297,
     gmaps: "https://maps.app.goo.gl/NbpKcamFKScrDcP89",
   },
 
@@ -161,8 +166,8 @@ export const pois: Poi[] = [
     category: "breakfast",
     name: "Bar — colazione",
     description: { it: "Per la colazione o la merenda", en: "Breakfast and snacks" },
-    lat: 45.4819,
-    lng: 9.2342,
+    lat: 45.4878,
+    lng: 9.2282,
     gmaps: "https://maps.app.goo.gl/gwz6GZmvUgj3dzjd7",
   },
   {
@@ -170,8 +175,8 @@ export const pois: Poi[] = [
     category: "breakfast",
     name: "Bar — colazione",
     description: { it: "Per la colazione o la merenda", en: "Breakfast and snacks" },
-    lat: 45.4808,
-    lng: 9.2329,
+    lat: 45.4869,
+    lng: 9.2310,
     gmaps: "https://maps.app.goo.gl/D25p6yq8vs8xarmx9",
   },
 
@@ -184,8 +189,8 @@ export const pois: Poi[] = [
       it: "Pronto soccorso di riferimento in zona",
       en: "Nearest emergency room",
     },
-    lat: 45.4848,
-    lng: 9.2308,
+    lat: 45.4853,
+    lng: 9.2245,
     gmaps: "https://maps.app.goo.gl/fMNQPJ4ih6sQzf6a7",
   },
 ];

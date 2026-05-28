@@ -7,19 +7,40 @@ type BookedRange = {
 
 const cache = new Map<string, BookedRange[]>();
 
-export async function fetchAvailability(apt: Apartment) {
-  if (apt.alwaysAvailable) return [];
-  if (cache.has(apt.icalId)) return cache.get(apt.icalId) || [];
-
-  const res = await fetch(`/api/ical?apt=${encodeURIComponent(apt.icalId)}`);
+async function fetchOnce(icalId: string) {
+  const res = await fetch(`/api/ical?apt=${encodeURIComponent(icalId)}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
   const data = (await res.json()) as { events?: BookedRange[]; error?: string };
   if (data.error === "fetch_failed") throw new Error("iCal fetch failed");
+  return data.events || [];
+}
 
-  const events = data.events || [];
-  cache.set(apt.icalId, events);
-  return events;
+/**
+ * Fetch booked ranges for an apartment with a single retry. The upstream
+ * iCal source (Spotahome) occasionally rate-limits or times out when many
+ * apartments are queried concurrently, so a quick second chance avoids the
+ * UI dumping every apartment into the "Da verificare" state.
+ */
+export async function fetchAvailability(apt: Apartment) {
+  if (apt.alwaysAvailable) return [];
+  const cached = cache.get(apt.icalId);
+  if (cached) return cached;
+
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const events = await fetchOnce(apt.icalId);
+      cache.set(apt.icalId, events);
+      return events;
+    } catch (err) {
+      lastError = err;
+      // Small back-off before retrying.
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+  }
+  // eslint-disable-next-line no-console
+  console.warn(`[availability] ${apt.icalId} failed after retry:`, lastError);
+  throw lastError;
 }
 
 export function isAvailable(bookedRanges: BookedRange[], checkIn: string, checkOut: string) {

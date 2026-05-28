@@ -26,6 +26,8 @@ export default function AvailabilityPage() {
 
   const canSearch = Boolean(checkIn && checkOut && checkOut > checkIn && !isChecking);
   const availableCount = visibleApartments.filter((a) => statuses[a.id] === "available").length;
+  const unknownCount = visibleApartments.filter((a) => statuses[a.id] === "unknown").length;
+  const allUnknown = hasSearched && unknownCount === visibleApartments.length;
 
   function handleRangeChange(nextIn: string, nextOut: string) {
     setCheckIn(nextIn);
@@ -71,9 +73,11 @@ export default function AvailabilityPage() {
               animate={{ opacity: 1, y: 0 }}
               className="mt-6 text-center text-sm text-muted-foreground"
             >
-              {availableCount > 0
-                ? t("availabilityResult", { count: availableCount })
-                : t("availabilityNoResult")}
+              {allUnknown
+                ? t("availabilityCheckFailed")
+                : availableCount > 0
+                  ? t("availabilityResult", { count: availableCount })
+                  : t("availabilityNoResult")}
             </motion.p>
           )}
         </div>
