@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import { createRequire } from 'module'
 
 const require = createRequire(import.meta.url)
-const icalHandler = require('../api/ical.js')
+const icalHandler = require('./api/ical.js')
 
 
 function figmaAssetResolver() {
@@ -65,7 +65,7 @@ function vercelApiDevServer() {
 }
 
 export default defineConfig({
-  publicDir: path.resolve(__dirname, '../public'),
+  publicDir: path.resolve(__dirname, './public'),
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

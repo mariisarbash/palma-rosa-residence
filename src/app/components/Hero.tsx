@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import davanti_sopraFoto from "../../imports/davanti_sopra.jpg";
 import { useLanguage } from "../lib/language";
+
+const heroImage = "/images/building/davanti_sopra.jpg";
 
 export default function Hero() {
   const { language, t } = useLanguage();
@@ -15,7 +16,7 @@ export default function Hero() {
     <div className="relative min-h-[100dvh] w-full overflow-hidden">
       <div className="absolute inset-0">
         <ImageWithFallback
-          src={davanti_sopraFoto}
+          src={heroImage}
           alt="Palma Rosa Residence - Vista dall'alto"
           className="h-full w-full object-cover"
         />
