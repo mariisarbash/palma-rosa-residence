@@ -3,7 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router";
 import { useLanguage } from "../lib/language";
 
-const heroImage = "/images/building/davanti_sopra.jpg";
+const heroImage = "/images/building/hero.jpg";
 
 export default function Hero() {
   const { t } = useLanguage();
