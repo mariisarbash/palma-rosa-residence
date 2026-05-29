@@ -1,8 +1,12 @@
+import { lazy, Suspense } from "react";
 import Hero from "../components/Hero";
 import Gallery from "../components/Gallery";
 import Features from "../components/Features";
 import RoomsSection from "../components/RoomsSection";
-import NearbyMap from "../components/NearbyMap";
+
+// Leaflet adds ~150 KB to the bundle. The map sits at the bottom of the
+// page, so we lazy-load it and let it stream in while the user scrolls.
+const NearbyMap = lazy(() => import("../components/NearbyMap"));
 
 /**
  * Public landing — presentation only. The availability checker lives on
@@ -22,7 +26,9 @@ export default function HomePage() {
         <RoomsSection />
       </section>
       <section id="nearby">
-        <NearbyMap />
+        <Suspense fallback={<div className="min-h-[640px]" aria-hidden />}>
+          <NearbyMap />
+        </Suspense>
       </section>
     </>
   );

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
   <head>
@@ -9,6 +8,18 @@
     <meta property="og:title" content="Palma Rosa Residence" />
     <meta property="og:description" content="Appartamenti con bagno privato vicino alla M2 a Milano." />
     <meta property="og:type" content="website" />
+
+    <!-- Hero image: above-the-fold, preload + decode hint so first paint
+         isn't blocked waiting for the browser to discover the <img> tag
+         deep inside the React tree. -->
+    <link rel="preload" as="image" href="/images/building/davanti_sopra.jpg" fetchpriority="high" />
+
+    <!-- Speed up Fontshare + Google Fonts handshake. -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <style>html, body { min-height: 100%; margin: 0; } #root { min-height: 100%; }</style>
   </head>
 

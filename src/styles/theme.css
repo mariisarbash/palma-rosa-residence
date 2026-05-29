@@ -280,3 +280,26 @@
   border-color: rgba(31, 27, 22, 0.2);
 }
 .btn-outline:active { transform: translateY(1px); }
+
+/*
+ * Lightweight CSS stagger fade — replaces dozens of Framer Motion
+ * whileInView IntersectionObservers on listing grids. Each item sets its
+ * own animation-delay inline via style. We respect prefers-reduced-motion.
+ */
+@keyframes apr-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.apr-fade {
+  opacity: 0;
+  animation: apr-fade-in 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apr-fade {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
