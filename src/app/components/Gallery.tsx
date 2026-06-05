@@ -14,19 +14,39 @@ const images: GalleryImage[] = [
     captionKey: "captionFacade",
   },
   {
-    url: "/images/building/davanti_sopra.jpg",
-    altKey: "captionAerial",
-    captionKey: "captionAerial",
+    url: "/images/building/ingresso.jpg",
+    altKey: "captionIngresso",
+    captionKey: "captionIngresso",
   },
   {
-    url: "/images/apartments/a1/a1_1.jpg",
-    altKey: "captionApartmentA1",
-    captionKey: "captionApartmentA1",
+    url: "/images/building/piano_1_ingresso.jpg",
+    altKey: "captionCorridoio",
+    captionKey: "captionCorridoio",
   },
   {
-    url: "/images/apartments/b1/b1_1.jpg",
-    altKey: "captionApartmentB1",
-    captionKey: "captionApartmentB1",
+    url: "/images/building/scale.jpg",
+    altKey: "captionScale",
+    captionKey: "captionScale",
+  },
+  {
+    url: "/images/building/ascensore.jpg",
+    altKey: "captionAscensore",
+    captionKey: "captionAscensore",
+  },
+  {
+    url: "/images/building/lavanderia.jpg",
+    altKey: "captionLavanderia",
+    captionKey: "captionLavanderia",
+  },
+  {
+    url: "/images/building/citofono.jpg",
+    altKey: "captionCitofono",
+    captionKey: "captionCitofono",
+  },
+  {
+    url: "/images/building/vista_dal_balcone.jpg",
+    altKey: "captionVistaDalBalcone",
+    captionKey: "captionVistaDalBalcone",
   },
 ];
 
