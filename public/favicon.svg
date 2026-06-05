@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Palma Rosa Residence">
+  <rect width="200" height="200" fill="#F7F3EC" rx="44"/>
+  <g transform="translate(100, 126)">
+    <path d="M0,-84 C10,-52 10,-18 0,0 C-10,-18 -10,-52 0,-84 Z" fill="#C2876A"/>
+    <g transform="rotate(-24)">
+      <path d="M0,-82 C10,-50 10,-17 0,0 C-10,-17 -10,-50 0,-82 Z" fill="#C2876A" opacity="0.88"/>
+    </g>
+    <g transform="rotate(24)">
+      <path d="M0,-82 C10,-50 10,-17 0,0 C-10,-17 -10,-50 0,-82 Z" fill="#C2876A" opacity="0.88"/>
+    </g>
+    <g transform="rotate(-50)">
+      <path d="M0,-72 C9,-44 9,-15 0,0 C-9,-15 -9,-44 0,-72 Z" fill="#C2876A" opacity="0.60"/>
+    </g>
+    <g transform="rotate(50)">
+      <path d="M0,-72 C9,-44 9,-15 0,0 C-9,-15 -9,-44 0,-72 Z" fill="#C2876A" opacity="0.60"/>
+    </g>
+    <line x1="0" y1="0" x2="0" y2="14" stroke="#C2876A" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
