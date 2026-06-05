@@ -83,4 +83,19 @@ export default defineConfig({
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
+
+  // Long-term caching: split big vendors into their own chunks so a code
+  // change in app/* doesn't invalidate the (large) library chunks.
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router'],
+          'motion-vendor': ['motion'],
+          'leaflet-vendor': ['leaflet', 'react-leaflet'],
+          'daypicker-vendor': ['react-day-picker', 'date-fns'],
+        },
+      },
+    },
+  },
 })

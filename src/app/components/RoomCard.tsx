@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Check, Image as ImageIcon, X } from "lucide-react";
 import type { Apartment, ApartmentStatus } from "../data/apartments";
 import { getApartmentFloor } from "../data/apartments";
@@ -9,7 +10,7 @@ type RoomCardProps = {
   onOpen: () => void;
 };
 
-export default function RoomCard({ apartment, status, onOpen }: RoomCardProps) {
+function RoomCardImpl({ apartment, status, onOpen }: RoomCardProps) {
   const { t } = useLanguage();
   const floor = getApartmentFloor(apartment);
   const thumb = apartment.photos[0] || "/images/placeholder.svg";
@@ -26,6 +27,7 @@ export default function RoomCard({ apartment, status, onOpen }: RoomCardProps) {
           alt={`${t("apartment")} ${apartment.label}`}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
           loading="lazy"
+          decoding="async"
         />
         {apartment.photos.length === 0 && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-muted text-muted-foreground">
@@ -55,6 +57,21 @@ export default function RoomCard({ apartment, status, onOpen }: RoomCardProps) {
     </button>
   );
 }
+
+/**
+ * Cards re-render every time the availability map changes — even when only
+ * one apartment's status flips. Memo on (apartment id, status, onOpen)
+ * keeps the other 8 cards stable.
+ */
+const RoomCard = memo(RoomCardImpl, (prev, next) => {
+  return (
+    prev.apartment.id === next.apartment.id &&
+    prev.status === next.status &&
+    prev.onOpen === next.onOpen
+  );
+});
+
+export default RoomCard;
 
 function StatusBadge({ status }: { status: ApartmentStatus }) {
   const { t } = useLanguage();

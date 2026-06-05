@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useCallback, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useAvailability } from "../lib/availability-context";
 import { useLanguage } from "../lib/language";
-import { visibleApartments, type Apartment } from "../data/apartments";
+import { visibleApartments, type Apartment, type ApartmentStatus } from "../data/apartments";
 import DateRangePicker from "../components/DateRangePicker";
 import RoomCard from "../components/RoomCard";
 import ApartmentModal from "../components/ApartmentModal";
@@ -29,10 +28,15 @@ export default function AvailabilityPage() {
   const unknownCount = visibleApartments.filter((a) => statuses[a.id] === "unknown").length;
   const allUnknown = hasSearched && unknownCount === visibleApartments.length;
 
-  function handleRangeChange(nextIn: string, nextOut: string) {
-    setCheckIn(nextIn);
-    setCheckOut(nextOut);
-  }
+  const handleRangeChange = useCallback(
+    (nextIn: string, nextOut: string) => {
+      setCheckIn(nextIn);
+      setCheckOut(nextOut);
+    },
+    [setCheckIn, setCheckOut],
+  );
+  const handleOpen = useCallback((apartment: Apartment) => setSelected(apartment), []);
+  const handleClose = useCallback(() => setSelected(null), []);
 
   return (
     <>
@@ -68,17 +72,13 @@ export default function AvailabilityPage() {
           </div>
 
           {hasSearched && !isChecking && (
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6 text-center text-sm text-muted-foreground"
-            >
+            <p className="apr-fade mt-6 text-center text-sm text-muted-foreground">
               {allUnknown
                 ? t("availabilityCheckFailed")
                 : availableCount > 0
                   ? t("availabilityResult", { count: availableCount })
                   : t("availabilityNoResult")}
-            </motion.p>
+            </p>
           )}
         </div>
       </section>
@@ -94,28 +94,39 @@ export default function AvailabilityPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {visibleApartments.map((apartment, index) => (
-              <motion.div
+              <div
                 key={apartment.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.04 }}
+                className="apr-fade"
+                style={{ animationDelay: `${index * 40}ms` }}
               >
-                <RoomCard
+                <CardOpener
                   apartment={apartment}
                   status={statuses[apartment.id] || null}
-                  onOpen={() => setSelected(apartment)}
+                  onOpen={handleOpen}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        <ApartmentModal apartment={selected} onClose={() => setSelected(null)} />
+        <ApartmentModal apartment={selected} onClose={handleClose} />
       </section>
 
-      {/* Save query string for shareable searches */}
+      {/* Keep checkIn/checkOut/lang in DOM for share-able searches later. */}
       <input type="hidden" value={`${checkIn}_${checkOut}_${language}`} aria-hidden />
     </>
   );
+}
+
+function CardOpener({
+  apartment,
+  status,
+  onOpen,
+}: {
+  apartment: Apartment;
+  status: ApartmentStatus;
+  onOpen: (apartment: Apartment) => void;
+}) {
+  const handle = useCallback(() => onOpen(apartment), [onOpen, apartment]);
+  return <RoomCard apartment={apartment} status={status} onOpen={handle} />;
 }

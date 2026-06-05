@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Bath, Sofa, Train, WashingMachine, Wifi, Building2 } from "lucide-react";
 import { useLanguage } from "../lib/language";
 
@@ -25,13 +24,10 @@ export default function Features() {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={feature.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="group flex items-start gap-5 rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+              className="apr-fade group flex items-start gap-5 rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+              style={{ animationDelay: `${index * 50}ms` }}
             >
               <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-secondary text-foreground transition group-hover:bg-foreground group-hover:text-background">
                 <feature.icon className="h-5 w-5" />
@@ -40,7 +36,7 @@ export default function Features() {
                 <h3 className="mb-1.5">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">{feature.description}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
