@@ -241,6 +241,11 @@
 .btn-glass:active {
   transform: translateY(1px);
 }
+/* On dark photo backgrounds the ring needs to be light to stay visible. */
+.btn-glass:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
 
 .btn-solid {
   display: inline-flex;
@@ -260,6 +265,10 @@
 .btn-solid:hover { opacity: 0.92; }
 .btn-solid:active { transform: translateY(1px); }
 .btn-solid:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-solid:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
 
 .btn-outline {
   display: inline-flex;
@@ -280,6 +289,10 @@
   border-color: rgba(31, 27, 22, 0.2);
 }
 .btn-outline:active { transform: translateY(1px); }
+.btn-outline:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
 
 /*
  * Lightweight CSS stagger fade — replaces dozens of Framer Motion

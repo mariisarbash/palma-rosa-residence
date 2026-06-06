@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp OK'\\)\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=/tmp/shot-gallery.png 'http://localhost:4329/#gallery')",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=/tmp/shot-features.png 'http://localhost:4329/#features')"
     ]
   }
 }

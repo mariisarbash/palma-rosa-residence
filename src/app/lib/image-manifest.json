@@ -1,0 +1,931 @@
+{
+  "/images/apartments/a1/a1_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_12.jpeg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_5.1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a1/a1_8.jpg": [
+    480,
+    768,
+    1200,
+    1203
+  ],
+  "/images/apartments/a1/a1_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_12.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_13.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_14.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_15.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_16.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_17.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_18.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_19.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a2/b2_a2_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_12.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_bagno_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_bagno_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_bagno_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a3/a3_bagno_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_bagno_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a4/a4_bagno_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a5/a5_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a5/a5_2.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_3.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a5/a5_5.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a5/a5_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/a5/a5_8.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_9.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_bagno_1.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_bagno_2.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/a5/a5_bagno_3.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/apartments/ascensore.jpeg": [
+    480,
+    768,
+    900
+  ],
+  "/images/apartments/b1/b1_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_12.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_13.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_14.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_15.jpeg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b1/b1_7.jpg": [
+    480,
+    768,
+    1200,
+    1203
+  ],
+  "/images/apartments/b1/b1_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_12.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_13.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_14.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_15.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_16.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_17.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_18.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_19.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b2/b2_a2_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_bagno_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_bagno_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_bagno_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_bagno_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b3/b3_bagno_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_10.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_11.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_5.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_6.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_7.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_8.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_9.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_bagno_1.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_bagno_2.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_bagno_3.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/b4/b4_bagno_4.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/apartments/lavanderia.jpeg": [
+    480,
+    768,
+    900
+  ],
+  "/images/apartments/lavatrice_asciugatrice.jpeg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/ascensore.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/citofono.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/davanti.jpg": [
+    480,
+    768,
+    1200
+  ],
+  "/images/building/davanti_sopra.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/building/hero.jpg": [
+    480,
+    768,
+    1200,
+    1600
+  ],
+  "/images/building/ingresso.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/lavanderia.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/piano_1_ingresso.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/scale.jpg": [
+    480,
+    768,
+    900
+  ],
+  "/images/building/vista_dal_balcone.jpg": [
+    480,
+    768,
+    900
+  ]
+}

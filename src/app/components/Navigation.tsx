@@ -59,7 +59,9 @@ export default function Navigation() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`group relative text-sm font-medium ${linkColor}`}
+                className={`group relative rounded-sm text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4 ${linkColor} ${
+                  solid ? "focus-visible:outline-foreground" : "focus-visible:outline-white"
+                }`}
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
@@ -91,10 +93,13 @@ export default function Navigation() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden rounded-full p-2 ${
-              solid ? "bg-foreground text-background" : "bg-white/15 text-white backdrop-blur-md"
+            className={`md:hidden rounded-full p-3 transition focus-visible:outline-2 focus-visible:outline-offset-2 ${
+              solid
+                ? "bg-foreground text-background focus-visible:outline-foreground"
+                : "bg-white/15 text-white backdrop-blur-md focus-visible:outline-white"
             }`}
-            aria-label="Menu"
+            aria-label={isMobileMenuOpen ? t("closeMenu") : t("openMenu")}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

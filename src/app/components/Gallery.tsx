@@ -1,4 +1,4 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Picture } from "./Picture";
 import { useLanguage } from "../lib/language";
 
 type GalleryImage = {
@@ -54,9 +54,9 @@ export default function Gallery() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-secondary px-6 py-24 md:px-12 md:py-32">
+    <section className="bg-secondary px-6 py-12 md:px-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 max-w-2xl">
+        <div className="mb-10 max-w-2xl md:mb-14">
           <p className="eyebrow mb-4 text-muted-foreground">{t("eyebrowResidence")}</p>
           <h2 className="mb-5">{t("galleryHeading")}</h2>
           <p className="text-muted-foreground">{t("galleryIntro")}</p>
@@ -74,12 +74,11 @@ export default function Gallery() {
                   index === 0 ? "aspect-[4/5]" : "aspect-[4/3]"
                 }`}
               >
-                <ImageWithFallback
+                <Picture
                   src={image.url}
                   alt={t(image.altKey as never) as string}
                   className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04]"
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(min-width: 768px) 50vw, 100vw"
                 />
               </div>
               <figcaption className="mt-3 px-1 text-sm text-muted-foreground">

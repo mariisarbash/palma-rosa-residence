@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router";
+import { Picture } from "./Picture";
 import { useLanguage } from "../lib/language";
 
 const heroImage = "/images/building/hero.jpg";
@@ -15,14 +16,13 @@ export default function Hero() {
   return (
     <div className="relative min-h-[100dvh] w-full overflow-hidden">
       <div className="absolute inset-0">
-        <img
+        <Picture
           src={heroImage}
           alt="Palma Rosa Residence"
           className="h-full w-full object-cover"
           // Above-the-fold: pre-loaded in index.html, decode async, eager.
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
+          sizes="100vw"
+          priority
         />
         {/* Two-tone soft gradient — keeps body crisp, anchors text bottom */}
         <div className="absolute inset-0 bg-linear-to-b from-black/15 via-transparent to-black/55" />

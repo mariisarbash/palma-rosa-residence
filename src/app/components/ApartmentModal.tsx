@@ -9,6 +9,7 @@ import {
 } from "../data/apartments";
 import { useAvailability } from "../lib/availability-context";
 import { useLanguage } from "../lib/language";
+import { Picture } from "./Picture";
 
 type ApartmentModalProps = {
   apartment: Apartment | null;
@@ -70,10 +71,12 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
         </button>
 
         <div className="relative min-h-[320px] bg-secondary md:min-h-[620px]">
-          <img
+          <Picture
             src={activePhoto}
             alt={`${t("apartment")} ${apartment.label} ${photoIndex + 1}`}
             className="h-full max-h-[64dvh] w-full object-cover md:max-h-none"
+            sizes="(min-width: 768px) 60vw, 100vw"
+            priority
           />
           {apartment.photos.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center bg-secondary/80 text-muted-foreground">

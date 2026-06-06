@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
+import { MotionConfig } from "motion/react";
 import { AvailabilityProvider } from "./lib/availability-context";
 import { LanguageProvider } from "./lib/language";
 import SiteLayout from "./components/SiteLayout";
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <AvailabilityProvider>
+        <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <Routes>
             <Route element={<SiteLayout />}>
@@ -49,6 +51,7 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        </MotionConfig>
       </AvailabilityProvider>
     </LanguageProvider>
   );

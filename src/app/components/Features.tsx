@@ -14,9 +14,9 @@ export default function Features() {
   ];
 
   return (
-    <section className="bg-background px-6 py-24 md:px-12 md:py-32">
+    <section className="bg-background px-6 py-12 md:px-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 max-w-2xl">
+        <div className="mb-10 max-w-2xl md:mb-14">
           <p className="eyebrow mb-4 text-muted-foreground">{t("eyebrowServices")}</p>
           <h2 className="mb-5">{t("servicesHeading")}</h2>
           <p className="text-muted-foreground">{t("servicesIntro")}</p>
@@ -26,10 +26,10 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="apr-fade group flex items-start gap-5 rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+              className="apr-fade flex min-h-[120px] items-start gap-5 rounded-3xl border border-border bg-card p-6"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-secondary text-foreground transition group-hover:bg-foreground group-hover:text-background">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-secondary text-foreground">
                 <feature.icon className="h-5 w-5" />
               </div>
               <div>

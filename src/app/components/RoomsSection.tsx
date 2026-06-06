@@ -21,7 +21,7 @@ export default function RoomsSection() {
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
-    <section className="bg-background px-6 py-24 md:px-12 md:py-32">
+    <section className="bg-background px-6 py-12 md:px-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

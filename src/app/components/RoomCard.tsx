@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Check, Image as ImageIcon, X } from "lucide-react";
 import type { Apartment, ApartmentStatus } from "../data/apartments";
 import { getApartmentFloor } from "../data/apartments";
+import { Picture } from "./Picture";
 import { useLanguage } from "../lib/language";
 
 type RoomCardProps = {
@@ -22,12 +23,11 @@ function RoomCardImpl({ apartment, status, onOpen }: RoomCardProps) {
       className="group block h-full text-left transition-transform duration-300 hover:-translate-y-0.5"
     >
       <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-muted shadow-md">
-        <img
+        <Picture
           src={thumb}
           alt={`${t("apartment")} ${apartment.label}`}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-          loading="lazy"
-          decoding="async"
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
         />
         {apartment.photos.length === 0 && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-muted text-muted-foreground">
