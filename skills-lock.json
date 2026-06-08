@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "absolute-work": {
+      "source": "absolutelyskilled/absolutelyskilled",
+      "sourceType": "github",
+      "skillPath": "skills/absolute-work/SKILL.md",
+      "computedHash": "aa6b0b56d7a3c67599dc26e039e6a3a1a21f3f6557eddf8bf77147b497a2d49d"
+    },
+    "landing-page-copywriter": {
+      "source": "onewave-ai/claude-skills",
+      "sourceType": "github",
+      "skillPath": "landing-page-copywriter/SKILL.md",
+      "computedHash": "f86f1a5d1f6138f935b1d2760c958a7f8179a8584e8526fbd176bdcf7ab48304"
+    }
+  }
+}

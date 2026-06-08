@@ -316,3 +316,44 @@
     transform: none;
   }
 }
+
+/*
+ * Modal entrance. On mobile the dialog is a bottom sheet that slides up;
+ * on desktop it's a centred dialog that fades + scales in gently. The two
+ * keyframes share the class, the breakpoint picks which transform to use.
+ */
+@keyframes apr-sheet-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes apr-dialog-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.apr-sheet {
+  animation: apr-sheet-up 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 768px) {
+  .apr-sheet {
+    animation: apr-dialog-in 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes apr-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.apr-scrim {
+  animation: apr-scrim-in 240ms ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apr-sheet,
+  .apr-scrim {
+    animation: none;
+  }
+}

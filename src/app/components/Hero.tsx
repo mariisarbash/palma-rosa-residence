@@ -65,7 +65,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-wrap items-center gap-3"
           >
-            <Link to="/disponibilita" className="btn-glass">
+            <Link
+              to="/disponibilita"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[0.9375rem] font-medium text-foreground shadow-lg transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-px"
+            >
               {t("heroCtaCheck")}
               <ArrowRight className="h-4 w-4" />
             </Link>

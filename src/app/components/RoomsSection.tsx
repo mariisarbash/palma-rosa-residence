@@ -41,7 +41,7 @@ export default function RoomsSection() {
          * Removing 9 IntersectionObserver instances per Framer Motion cards
          * cut INP from ~1.1s to ~120ms in DevTools profiling.
          */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {visibleApartments.map((apartment, index) => (
             <div
               key={apartment.id}

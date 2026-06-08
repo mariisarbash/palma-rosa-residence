@@ -22,19 +22,19 @@ export default function Features() {
           <p className="text-muted-foreground">{t("servicesIntro")}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-3">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="apr-fade flex min-h-[120px] items-start gap-5 rounded-3xl border border-border bg-card p-6"
+              className="apr-fade flex flex-col gap-3 rounded-2xl border border-border bg-card p-4 md:min-h-[120px] md:flex-row md:items-start md:gap-5 md:rounded-3xl md:p-6"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-secondary text-foreground">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-secondary text-foreground md:h-12 md:w-12 md:rounded-2xl">
                 <feature.icon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="mb-1.5">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h3 className="mb-1 text-base md:mb-1.5 md:text-xl">{feature.title}</h3>
+                <p className="text-xs text-muted-foreground md:text-sm">{feature.description}</p>
               </div>
             </div>
           ))}

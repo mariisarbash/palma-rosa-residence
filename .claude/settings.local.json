@@ -4,7 +4,14 @@
       "Bash(npm run *)",
       "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp OK'\\)\")",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=/tmp/shot-gallery.png 'http://localhost:4329/#gallery')",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=/tmp/shot-features.png 'http://localhost:4329/#features')"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=/tmp/shot-features.png 'http://localhost:4329/#features')",
+      "Bash(cd *)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,844 --virtual-time-budget=5000 --screenshot=/tmp/pr_home.png http://localhost:5173/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,844 --virtual-time-budget=5000 --screenshot=/tmp/pr_avail.png http://localhost:5173/disponibilita)",
+      "Read(//tmp/**)",
+      "Bash(node shot_gallery.mjs)",
+      "Bash(pkill -f \"remote-debugging-port=9222\")",
+      "Bash(pkill -f \"vite\")"
     ]
   }
 }
