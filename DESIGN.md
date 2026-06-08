@@ -20,11 +20,12 @@ This document is the source of truth for the public website. Update it whenever 
 - Confirmed transport references: M2 Piola, M2/railway Lambrate, M2 Udine.
 - Do not publish precise walking times unless they have been verified.
 - Do not add fake phone numbers, emails, ratings, restaurants, reviews, room sizes, cleaning schedules, AC, or security claims.
+- Guest reviews are **curated and static**: real quotes copied by hand from Google / Airbnb / Booking into `src/app/data/reviews.ts`. There is no live API (Google Places caps at 5 reviews with billing/attribution constraints; Airbnb and Booking expose no public review API). Every entry must be a real review with author reduced to first name + initial. The shipped file currently holds clearly-marked placeholders (`isPlaceholder: true`) — replace them with real reviews before publishing.
 
 ## Visual Direction (v2 — soft, modern, expressive)
 
 - Overall feeling: refined residential hospitality, warm, contemporary, soft. Inspired by Ray-is-a-place, Kinn Collective, Daniel Blue.
-- Hero is full-bleed photo with the wordmark anchored bottom-left, a two-tone soft gradient, and frosted-glass pill buttons.
+- Hero is a full-bleed photo with the wordmark anchored bottom-left and frosted-glass pill buttons. The photo carries **two stacked overlays**: a uniform `bg-black/25` scrim (calms the bright enhanced source so it doesn't read as busy) plus a bottom-weighted gradient `from-black/20 via-black/15 to-black/75` that anchors the wordmark and keeps the CTAs legible. Keep enough darkening that white text stays readable over the brightest part of the image.
 - Photo surfaces use a generous `rounded-3xl` radius (24px) — soft contemporary, not flat editorial.
 - Color does not come from the brand — it comes from the real photography. UI is built on warm neutrals.
 - Buttons follow three named classes in `theme.css`:
@@ -62,12 +63,22 @@ Avoid: any pink/coral, heavy gradients, fake stock imagery, overly promotional c
 
 - Use `motion/react` only. Default in-view entrance: opacity 0 → 1 + y 18–24 → 0, 0.4–0.7s, single shot (`viewport={{ once: true }}`).
 - Hover transforms stay subtle: cards `-translate-y-0.5`, images `scale-[1.04]` over 700–1000ms.
+- Listing grids use the CSS-only `.apr-fade` stagger (inline `animation-delay`) instead of per-card IntersectionObservers — see the INP note in `RoomsSection.tsx`.
+- The whole app is wrapped in `<MotionConfig reducedMotion="user">` (`App.tsx`), so every `motion/react` animation **and** `.apr-fade` honour `prefers-reduced-motion`. Don't add new entrance animations that bypass this.
+
+### Images & performance
+
+- All photography is served as responsive WebP. The original JPGs in `public/images/**` are the source of truth and the universal `<img>` fallback; WebP width variants (`<name>-480w.webp`, `-768w.webp`, …) are generated next to them.
+- Generator: `npm run optimize:images` (`scripts/optimize-images.mjs`) uses `cwebp` (`brew install webp`). It is idempotent, never upscales, prunes orphan variants, and writes `src/app/lib/image-manifest.json`. **Re-run it whenever you add or replace a source photo**, then commit the new `.webp` files and the manifest.
+- Render images through the `<Picture>` component (`src/app/components/Picture.tsx`), never a bare `<img>`. It reads the manifest to build the WebP `srcset`, falls back to a plain `<img>` when an image has no manifest entry (e.g. the SVG placeholder), and uses `display:contents` so existing `h-full w-full object-cover` sizing is unchanged. Pass `sizes` for correct selection and `priority` for above-the-fold images (Hero, the modal's active photo).
+- The hero WebP set is preloaded in `index.html` via `imagesrcset`/`imagesizes` — keep that list in sync if the hero's available widths change.
+- Source JPGs are downscaled to a sensible cap on import (hero ≤ 2400px, gallery portraits ≤ 2000px) so the fallback never ships a multi-megapixel file.
 
 ## Routing
 
 The site is a 2-route SPA (React Router):
 
-- `/` — Landing. Presentation-only: Hero → Gallery → Services → Apartments → NearbyMap → Footer. Includes a "Check availability" CTA in the nav and below the Apartments grid.
+- `/` — Landing. Presentation-only: Hero → Gallery → Services → Apartments → Reviews → NearbyMap → Footer. Includes a "Check availability" CTA in the nav and below the Apartments grid.
 - `/disponibilita` (alias `/availability`) — Availability page. Large `DateRangePicker` (react-day-picker) above the apartments grid, status badges on each card, WhatsApp CTA in the modal disabled when an apartment is unavailable for the chosen dates.
 
 Shared chrome (Navigation + Footer + scroll reset) lives in `SiteLayout.tsx`.
@@ -78,7 +89,7 @@ Shared chrome (Navigation + Footer + scroll reset) lives in `SiteLayout.tsx`.
 - Hero uses `min-h-[100dvh]`, never fixed `h-screen`, to avoid mobile browser jump.
 - Apartment cards use real apartment photos when available. Missing photos use a clear placeholder state.
 - Details open in a modal with gallery, metadata, services, location, and WhatsApp CTA.
-- The neighbourhood is shown via an interactive **Leaflet + OpenStreetMap** component (`NearbyMap.tsx`) with category filter chips (transport, university, supermarket, pharmacy, breakfast, hospital). POI data lives in `src/app/data/poi.ts`.
+- The neighbourhood is shown via an interactive **Leaflet + OpenStreetMap** component (`NearbyMap.tsx`) with category filter chips (transport, university, supermarket, pharmacy, breakfast, hospital). POI data lives in `src/app/data/poi.ts`. Map pins use a **de-saturated, warmed** category palette (slate-blue / ochre / sage / brick / brown / plum) so the wayfinding colours stay distinguishable without breaking the warm-neutral system; the chip's coloured dot doubles as the legend.
 
 ## Hidden apartments
 
@@ -92,10 +103,13 @@ The `hidden` flag on an apartment record removes it from every visible surface (
 - If an apartment is unavailable for selected dates, the WhatsApp CTA in the modal is disabled and replaced by a clear unavailable message.
 - Language choice is stored in local storage.
 - Buttons should have visible hover and active feedback.
+- All interactive controls have a visible keyboard focus ring: the `.btn-*` pill classes define `:focus-visible` (light ring on dark photo surfaces, `--ring` on light surfaces); the map filter chips and nav links use `focus-visible:outline-*` utilities. Never ship an interactive element with `outline:none` and no replacement.
+- Touch targets are ≥ 44px (filter chips use `min-h-[44px]`, the mobile menu button uses `p-3`). Toggle controls expose state to assistive tech (`aria-pressed` on the map chips), and icon-only buttons have an `aria-label` that reflects current state (the menu button swaps open/close).
 
 ## Component Ownership
 
 - Apartment data lives in `src/app/data/apartments.ts`.
+- Review data lives in `src/app/data/reviews.ts`; the `Reviews.tsx` section (cream `bg-secondary` band, card grid, brand-coloured platform tags, star summary) renders it. The section and its nav link auto-hide in production while only placeholders exist (`hasRealReviews` + `import.meta.env.PROD`), so the layout can be previewed in `npm run dev` without ever shipping sample reviews.
 - Availability logic lives in `src/app/lib/availability.ts`.
 - Shared availability state lives in `src/app/lib/availability-context.tsx`.
 - Translations live in `src/app/lib/language.tsx`.
@@ -106,9 +120,10 @@ The `hidden` flag on an apartment record removes it from every visible surface (
 Flat layout at repo root (no nested project folder):
 
 - `src/` — React + Vite app entry (`main.tsx`, `app/`, `styles/`).
-- `public/` — static assets served as-is (`images/apartments/<id>/...`, `images/building/...`).
+- `public/` — static assets served as-is (`images/apartments/<id>/...`, `images/building/...`, plus generated `*.webp` variants).
 - `api/` — Vercel serverless functions (CommonJS, isolated by `api/package.json`).
-- `docs/` — `design inspiration/` reference screenshots, ATTRIBUTIONS.
+- `scripts/` — build-time utilities (`optimize-images.mjs`, run via `npm run optimize:images`).
+- `docs/` — `design inspiration/` reference screenshots, raw source photos (`foto_palazzo/`), ATTRIBUTIONS.
 - `index.html`, `vite.config.ts`, `vercel.json` at root.
 
 ## Future Improvements

@@ -10,10 +10,18 @@
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Hero image: above-the-fold, preload + decode hint so first paint
-         isn't blocked waiting for the browser to discover the <img> tag
-         deep inside the React tree. -->
-    <link rel="preload" as="image" href="/images/building/hero.jpg" fetchpriority="high" />
+    <!-- Hero image: above-the-fold, preload so first paint isn't blocked
+         waiting for the browser to discover the <img> deep in the React tree.
+         Preloads the responsive WebP set (what <Picture> actually renders) so
+         we don't double-download the JPG fallback. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/images/building/hero-480w.webp 480w, /images/building/hero-768w.webp 768w, /images/building/hero-1200w.webp 1200w, /images/building/hero-1920w.webp 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
 
     <!-- Speed up Fontshare + Google Fonts handshake. -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />

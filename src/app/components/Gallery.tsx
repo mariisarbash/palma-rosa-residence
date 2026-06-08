@@ -14,6 +14,11 @@ const images: GalleryImage[] = [
     captionKey: "captionFacade",
   },
   {
+    url: "/images/building/ingresso_esterno.jpg",
+    altKey: "captionIngressoEsterno",
+    captionKey: "captionIngressoEsterno",
+  },
+  {
     url: "/images/building/ingresso.jpg",
     altKey: "captionIngresso",
     captionKey: "captionIngresso",

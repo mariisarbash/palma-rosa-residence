@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router";
 import Logo from "./Logo";
+import { hasRealReviews } from "../data/reviews";
 import { useLanguage, type Language } from "../lib/language";
 
 type NavItem = { id: string; label: string; href?: string };
@@ -26,6 +27,9 @@ export default function Navigation() {
     { id: "gallery", label: t("gallery") },
     { id: "features", label: t("services") },
     { id: "rooms", label: t("roomsNav") },
+    // The reviews section is hidden in prod until real reviews exist; keep its
+    // nav link in sync so it never points at an empty section.
+    ...(hasRealReviews || import.meta.env.DEV ? [{ id: "reviews", label: t("reviewsNav") }] : []),
     { id: "nearby", label: t("eyebrowNearby") },
   ];
 

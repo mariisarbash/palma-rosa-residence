@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Gallery from "../components/Gallery";
 import Features from "../components/Features";
 import RoomsSection from "../components/RoomsSection";
+import Reviews from "../components/Reviews";
 
 // Leaflet adds ~150 KB to the bundle. The map sits at the bottom of the
 // page, so we lazy-load it and let it stream in while the user scrolls.
@@ -24,6 +25,9 @@ export default function HomePage() {
       </section>
       <section id="rooms">
         <RoomsSection />
+      </section>
+      <section id="reviews">
+        <Reviews />
       </section>
       <section id="nearby">
         <Suspense fallback={<div className="min-h-[640px]" aria-hidden />}>

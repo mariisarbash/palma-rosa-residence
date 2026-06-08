@@ -24,8 +24,10 @@ export default function Hero() {
           sizes="100vw"
           priority
         />
-        {/* Two-tone soft gradient — keeps body crisp, anchors text bottom */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/15 via-transparent to-black/55" />
+        {/* Uniform scrim calms the bright enhanced photo so it doesn't read as busy */}
+        <div className="absolute inset-0 bg-black/25" />
+        {/* Bottom-weighted gradient anchors the wordmark + CTAs and keeps them legible */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/15 to-black/75" />
       </div>
 
       <div className="relative z-10 flex min-h-[100dvh] w-full flex-col px-6 pb-16 pt-24 text-white md:px-12 md:pb-20">

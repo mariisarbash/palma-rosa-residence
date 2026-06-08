@@ -13,8 +13,8 @@
  * Usage:  node scripts/optimize-images.mjs [--force]
  */
 import { execFileSync } from "node:child_process";
-import { readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
-import { join, extname, relative, dirname } from "node:path";
+import { readdirSync, statSync, writeFileSync, existsSync, unlinkSync } from "node:fs";
+import { join, relative, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -86,7 +86,34 @@ for (const src of sources) {
 }
 
 writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + "\n");
+
+// Prune orphan .webp variants left over from a source that shrank, was
+// re-cropped, or was deleted — anything no longer named in the manifest.
+const wanted = new Set();
+for (const [url, widths] of Object.entries(manifest)) {
+  const base = join(ROOT, "public") + url.replace(/\.(jpe?g)$/i, "");
+  for (const w of widths) wanted.add(`${base}-${w}w.webp`);
+}
+let pruned = 0;
+for (const file of listWebp(IMAGES_DIR)) {
+  if (!wanted.has(file)) {
+    unlinkSync(file);
+    pruned++;
+  }
+}
+
 console.log(
-  `\nDone. ${Object.keys(manifest).length} images, ${generated} variants generated, ${skipped} up-to-date.`,
+  `\nDone. ${Object.keys(manifest).length} images, ${generated} variants generated, ${skipped} up-to-date, ${pruned} orphans pruned.`,
 );
 console.log(`Manifest -> ${relative(ROOT, MANIFEST_PATH)}`);
+
+/** Recursively collect every .webp under a directory. */
+function listWebp(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) out.push(...listWebp(full));
+    else if (full.endsWith(".webp")) out.push(full);
+  }
+  return out;
+}
