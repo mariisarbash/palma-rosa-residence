@@ -36,14 +36,40 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
 
   useEffect(() => {
     if (!apartment) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    // iOS Safari ignores `overflow: hidden` on <body> for touch scrolling, so
+    // the page kept scrolling behind the sheet — the toolbar retracted, the
+    // dynamic viewport height changed, and the pinned CTA slid out of view.
+    // The position:fixed technique truly freezes the page (and the toolbar),
+    // keeping the sheet — and its footer — anchored to the visible viewport.
+    const { body } = document;
+    const scrollY = window.scrollY;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      window.scrollTo(0, scrollY);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [apartment, onClose]);
@@ -87,7 +113,7 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
       onMouseDown={onClose}
     >
       <div
-        className="apr-sheet relative flex max-h-[92dvh] w-full max-w-6xl flex-col overflow-hidden rounded-t-3xl bg-card shadow-2xl md:max-h-[92dvh] md:flex-row md:rounded-3xl"
+        className="apr-sheet relative flex max-h-[92svh] w-full max-w-6xl flex-col overflow-hidden rounded-t-3xl bg-card shadow-2xl md:max-h-[92dvh] md:flex-row md:rounded-3xl"
         role="dialog"
         aria-modal="true"
         aria-label={`${t("apartment")} ${apartment.label}`}
@@ -115,7 +141,7 @@ export default function ApartmentModal({ apartment, onClose }: ApartmentModalPro
         </button>
 
         {/* PHOTO — fixed header on mobile, full-height left column on desktop */}
-        <div className="relative h-[40dvh] w-full shrink-0 bg-secondary md:h-auto md:min-h-[620px] md:w-[58%]">
+        <div className="relative h-[38svh] w-full shrink-0 bg-secondary md:h-auto md:min-h-[620px] md:w-[58%]">
           <Picture
             src={activePhoto}
             alt={`${t("apartment")} ${apartment.label} ${photoIndex + 1}`}
