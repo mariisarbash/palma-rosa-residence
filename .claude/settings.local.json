@@ -11,7 +11,12 @@
       "Read(//tmp/**)",
       "Bash(node shot_gallery.mjs)",
       "Bash(pkill -f \"remote-debugging-port=9222\")",
-      "Bash(pkill -f \"vite\")"
+      "Bash(pkill -f \"vite\")",
+      "Bash(mkdir -p /tmp/rev)",
+      "Bash(sips -c 760 778 --cropOffset 0 0 erbol.png --out /tmp/rev/erbol_top.png)",
+      "Bash(sips -z 1520 1556 /tmp/rev/erbol_top.png)",
+      "Bash(sips -c 634 778 --cropOffset 100 0 erbol.png --out /tmp/rev/erbol_mid.png)",
+      "Bash(sips -z 1268 1556 /tmp/rev/erbol_mid.png)"
     ]
   }
 }

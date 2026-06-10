@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import Logo from "./Logo";
 import { hasRealReviews } from "../data/reviews";
 import { useLanguage, type Language } from "../lib/language";
@@ -12,6 +12,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -35,9 +36,10 @@ export default function Navigation() {
 
   function scrollToSection(id: string) {
     setIsMobileMenuOpen(false);
-    // If we're not on home, navigate then scroll.
+    // If we're not on home, navigate home client-side (no full reload) and let
+    // SiteLayout scroll to the section once the landing has mounted.
     if (!isHome) {
-      window.location.href = `/#${id}`;
+      navigate("/", { state: { scrollTo: id } });
       return;
     }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
