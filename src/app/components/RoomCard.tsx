@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Check, Image as ImageIcon, X } from "lucide-react";
 import type { Apartment, ApartmentStatus } from "../data/apartments";
-import { getApartmentFloor } from "../data/apartments";
+import { getApartmentFloor, getBathroomLocation } from "../data/apartments";
 import { Picture } from "./Picture";
 import { useLanguage } from "../lib/language";
 
@@ -14,19 +14,27 @@ type RoomCardProps = {
 function RoomCardImpl({ apartment, status, onOpen }: RoomCardProps) {
   const { t } = useLanguage();
   const floor = getApartmentFloor(apartment);
+  const bathroom = getBathroomLocation(apartment);
   const thumb = apartment.photos[0] || "/images/placeholder.svg";
+  const isUnavailable = status === "unavailable";
 
   return (
     <button
       type="button"
       onClick={onOpen}
-      className="group block h-full text-left transition-transform duration-300 hover:-translate-y-0.5"
+      disabled={isUnavailable}
+      aria-disabled={isUnavailable}
+      className={`group block h-full text-left transition-transform duration-300 ${
+        isUnavailable ? "cursor-not-allowed opacity-50" : "hover:-translate-y-0.5"
+      }`}
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-muted shadow-md md:aspect-[4/5] md:rounded-3xl">
         <Picture
           src={thumb}
           alt={`${t("apartment")} ${apartment.label}`}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+          className={`h-full w-full object-cover transition-transform duration-700 ${
+            isUnavailable ? "grayscale" : "group-hover:scale-[1.05]"
+          }`}
           sizes="(min-width: 1024px) 33vw, 50vw"
         />
         {apartment.photos.length === 0 && (
@@ -51,7 +59,7 @@ function RoomCardImpl({ apartment, status, onOpen }: RoomCardProps) {
           {apartment.people === 1
             ? t("people", { count: apartment.people })
             : t("peoplePlural", { count: apartment.people })}{" "}
-          · {t("privateBathroom")}
+          · {bathroom === "ensuite" ? t("privateEnsuiteBathroom") : t("privateCorridorBathroom")}
           <span className="hidden md:inline"> · {t("sofaBed")}</span>
         </p>
       </div>

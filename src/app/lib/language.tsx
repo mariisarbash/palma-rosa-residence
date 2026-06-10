@@ -111,6 +111,18 @@ const dictionary = {
     nights: "{count} notti",
     night: "{count} notte",
 
+    // Availability filters
+    filterBathroom: "Bagno",
+    filterFloor: "Piano",
+    filterAll: "Tutti",
+    bathroomEnsuiteShort: "In camera",
+    bathroomCorridorShort: "Fuori",
+    floorGroundShort: "Terra",
+    floorFirstShort: "Primo",
+    noFilterResults: "Nessun appartamento con questi criteri.",
+    clearFilters: "Azzera filtri",
+    apartmentsCountFiltered: "{shown} di {total}",
+
     // Nearby map
     nearbyHeading: "La zona, in un colpo d'occhio",
     nearbyIntro: "Citta Studi: universita, metro e tutto quello che ti serve nei dintorni.",
@@ -228,6 +240,17 @@ const dictionary = {
     selectDates: "Pick your dates",
     nights: "{count} nights",
     night: "{count} night",
+
+    filterBathroom: "Bathroom",
+    filterFloor: "Floor",
+    filterAll: "All",
+    bathroomEnsuiteShort: "En-suite",
+    bathroomCorridorShort: "Outside",
+    floorGroundShort: "Ground",
+    floorFirstShort: "First",
+    noFilterResults: "No apartments match these filters.",
+    clearFilters: "Clear filters",
+    apartmentsCountFiltered: "{shown} of {total}",
 
     nearbyHeading: "The neighbourhood at a glance",
     nearbyIntro: "Citta Studi: universities, metro stops, and everyday essentials a short walk away.",
