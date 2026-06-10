@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Target & libs — matches the Vite/esbuild output for modern browsers. */
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "useDefineForClassFields": true,
+
+    /* Module system — Vite bundles, so use bundler resolution and never emit. */
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    /* React 18 automatic JSX runtime. */
+    "jsx": "react-jsx",
+
+    /* Type-safety. */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  /* Only type-check the app source. vite.config.ts / api / scripts run in Node
+     and would need @types/node, which isn't a dependency. */
+  "include": ["src"]
+}
