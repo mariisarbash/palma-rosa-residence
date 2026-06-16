@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
 import { it as itLocale, enUS } from "date-fns/locale";
 import "react-day-picker/dist/style.css";
@@ -35,6 +35,17 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
 
   const locale = language === "it" ? itLocale : enUS;
 
+  // Two months side-by-side on desktop (like Airbnb), a single month on mobile
+  // where there isn't room for both.
+  const [numberOfMonths, setNumberOfMonths] = useState(1);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setNumberOfMonths(mq.matches ? 2 : 1);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   const today = useMemo(() => {
     const t = new Date();
     t.setHours(0, 0, 0, 0);
@@ -52,19 +63,18 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
       : 0;
 
   return (
-    <div className="prr-daypicker rounded-3xl border border-border bg-card p-6 md:p-8">
+    <div className="prr-daypicker mx-auto w-fit max-w-full rounded-3xl border border-border bg-card p-4 sm:p-6 md:p-7">
       <DayPicker
         mode="range"
-        numberOfMonths={1}
+        numberOfMonths={numberOfMonths}
         selected={range}
         onSelect={handleSelect}
         disabled={{ before: today }}
         locale={locale}
-        showOutsideDays
         className="mx-auto"
       />
 
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border px-1 pt-4">
         <div className="text-sm">
           <span className="text-muted-foreground">{t("checkIn")}</span>{" "}
           <span className="font-medium text-foreground">

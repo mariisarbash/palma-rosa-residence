@@ -22,7 +22,20 @@ export default function Navigation() {
   }, []);
 
   // On non-home routes the hero is not there: force the scrolled style.
-  const solid = isScrolled || !isHome;
+  // An open mobile drawer must also be solid — otherwise the transparent hero
+  // bleeds through the menu and the items become unreadable (mobile bug).
+  const solid = isScrolled || !isHome || isMobileMenuOpen;
+
+  // Lock body scroll while the mobile drawer is open so the page behind it
+  // can't move under the menu.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileMenuOpen]);
 
   const navItems: NavItem[] = [
     { id: "gallery", label: t("gallery") },
@@ -50,7 +63,9 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        solid ? "bg-background/85 backdrop-blur-lg border-b border-border" : "bg-transparent"
+        solid
+          ? `${isMobileMenuOpen ? "bg-background" : "bg-background/85"} backdrop-blur-lg border-b border-border`
+          : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-4 md:px-12">
