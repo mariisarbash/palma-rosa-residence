@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { it as itLocale, enUS } from "date-fns/locale";
-import "react-day-picker/dist/style.css";
 import { useLanguage } from "../lib/language";
 
 type Props = {
-  checkIn: string;            // ISO yyyy-mm-dd
+  checkIn: string; // ISO yyyy-mm-dd
   checkOut: string;
   onChange: (checkIn: string, checkOut: string) => void;
 };
@@ -26,6 +26,10 @@ function fromISO(value: string): Date | undefined {
   return new Date(y, m - 1, d);
 }
 
+function cx(...classes: (string | false | null | undefined)[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) {
   const { language, t } = useLanguage();
   const [range, setRange] = useState<DateRange | undefined>({
@@ -34,9 +38,9 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
   });
 
   const locale = language === "it" ? itLocale : enUS;
+  const localeStr = language === "it" ? "it-IT" : "en-GB";
 
-  // Two months side-by-side on desktop (like Airbnb), a single month on mobile
-  // where there isn't room for both.
+  // Two months side-by-side on desktop (like Airbnb), one on mobile.
   const [numberOfMonths, setNumberOfMonths] = useState(1);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -47,9 +51,9 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
   }, []);
 
   const today = useMemo(() => {
-    const t = new Date();
-    t.setHours(0, 0, 0, 0);
-    return t;
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
   }, []);
 
   function handleSelect(next: DateRange | undefined) {
@@ -57,40 +61,151 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
     onChange(toISO(next?.from), toISO(next?.to));
   }
 
+  function handleClear() {
+    setRange(undefined);
+    onChange("", "");
+  }
+
   const nights =
     range?.from && range?.to
       ? Math.round((range.to.getTime() - range.from.getTime()) / (1000 * 60 * 60 * 24))
       : 0;
 
-  return (
-    <div className="prr-daypicker mx-auto w-fit max-w-full rounded-3xl border border-border bg-card p-4 sm:p-6 md:p-7">
-      <DayPicker
-        mode="range"
-        numberOfMonths={numberOfMonths}
-        selected={range}
-        onSelect={handleSelect}
-        disabled={{ before: today }}
-        locale={locale}
-        className="mx-auto"
-      />
+  // Which field the next click fills — drives the header highlight.
+  const step = !range?.from ? "in" : !range?.to ? "out" : "done";
 
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border px-1 pt-4">
-        <div className="text-sm">
-          <span className="text-muted-foreground">{t("checkIn")}</span>{" "}
-          <span className="font-medium text-foreground">
-            {range?.from ? range.from.toLocaleDateString(language === "it" ? "it-IT" : "en-GB") : "—"}
+  const fmt = (d: Date) =>
+    d.toLocaleDateString(localeStr, { weekday: "short", day: "numeric", month: "short" });
+
+  return (
+    <div className="w-full overflow-hidden rounded-3xl border border-border bg-background">
+      {/* ── Date fields header ──────────────────────────────── */}
+      <div className="flex items-stretch border-b border-border">
+        {/* Arrivo — click to restart the selection */}
+        <button
+          type="button"
+          onClick={() => step !== "in" && handleClear()}
+          className={cx(
+            "flex flex-1 flex-col gap-0.5 px-5 py-4 text-left transition-colors sm:px-6",
+            step === "in" ? "bg-foreground" : "cursor-pointer hover:bg-foreground/[0.04]",
+          )}
+        >
+          <span
+            className={cx(
+              "text-[10px] font-medium uppercase tracking-[0.14em]",
+              step === "in" ? "text-background/55" : "text-muted-foreground",
+            )}
+          >
+            {t("checkIn")}
           </span>
-          <span className="mx-3 text-muted-foreground">·</span>
-          <span className="text-muted-foreground">{t("checkOut")}</span>{" "}
-          <span className="font-medium text-foreground">
-            {range?.to ? range.to.toLocaleDateString(language === "it" ? "it-IT" : "en-GB") : "—"}
+          <span
+            className={cx(
+              "text-sm font-medium",
+              step === "in" ? "text-background" : range?.from ? "text-foreground" : "text-muted-foreground",
+            )}
+          >
+            {range?.from ? fmt(range.from) : t("selectCheckIn")}
+          </span>
+        </button>
+
+        {/* Nights badge / divider */}
+        <div className="flex items-center justify-center border-x border-border px-3 sm:px-4">
+          {nights > 0 ? (
+            <span className="rounded-full bg-accent px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-accent-foreground">
+              {nights === 1 ? t("night", { count: nights }) : t("nights", { count: nights })}
+            </span>
+          ) : (
+            <span className="text-[10px] text-foreground/20">·</span>
+          )}
+        </div>
+
+        {/* Partenza */}
+        <div
+          className={cx(
+            "flex flex-1 flex-col gap-0.5 px-5 py-4 transition-colors sm:px-6",
+            step === "out" ? "bg-foreground" : "",
+          )}
+        >
+          <span
+            className={cx(
+              "text-[10px] font-medium uppercase tracking-[0.14em]",
+              step === "out" ? "text-background/55" : "text-muted-foreground",
+            )}
+          >
+            {t("checkOut")}
+          </span>
+          <span
+            className={cx(
+              "text-sm font-medium",
+              step === "out" ? "text-background" : range?.to ? "text-foreground" : "text-muted-foreground",
+            )}
+          >
+            {range?.to ? fmt(range.to) : t("selectCheckOut")}
           </span>
         </div>
-        {nights > 0 && (
-          <span className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-foreground">
-            {nights === 1 ? t("night", { count: nights }) : t("nights", { count: nights })}
-          </span>
-        )}
+      </div>
+
+      {/* ── Calendar ────────────────────────────────────────── */}
+      <div className="px-4 py-6 sm:px-7">
+        <DayPicker
+          mode="range"
+          numberOfMonths={numberOfMonths}
+          selected={range}
+          onSelect={handleSelect}
+          disabled={{ before: today }}
+          locale={locale}
+          className="w-full"
+          classNames={{
+            months: "flex flex-col md:flex-row gap-6 md:gap-10",
+            month: "flex flex-col gap-3 w-full min-w-0",
+            caption: "relative flex items-center justify-center h-10 mb-1",
+            caption_label: "text-[11px] font-medium uppercase tracking-[0.16em] text-foreground",
+            nav: "flex items-center",
+            nav_button: cx(
+              "absolute flex h-8 w-8 items-center justify-center rounded-full",
+              "text-muted-foreground transition-colors",
+              "hover:bg-foreground/[0.08] hover:text-foreground",
+            ),
+            nav_button_previous: "left-0",
+            nav_button_next: "right-0",
+            table: "w-full border-collapse",
+            head_row: "flex w-full",
+            head_cell:
+              "flex-1 py-2 text-center text-[10px] font-medium uppercase tracking-[0.10em] text-muted-foreground",
+            row: "flex w-full mt-0.5",
+            cell: cx(
+              "relative flex-1 p-0 text-center",
+              // cream band behind any selected (in-range) day
+              "[&:has([aria-selected])]:bg-secondary",
+              // round the band's caps at the real range ends…
+              "[&:has(.rdp-range-start)]:rounded-l-full",
+              "[&:has(.rdp-range-end)]:rounded-r-full",
+              // …and where it wraps across a row edge
+              "first:[&:has([aria-selected])]:rounded-l-full",
+              "last:[&:has([aria-selected])]:rounded-r-full",
+            ),
+            day: cx(
+              "relative mx-auto flex h-9 w-9 items-center justify-center",
+              "rounded-full text-[13px] cursor-pointer transition-colors duration-100",
+              "hover:bg-foreground/[0.08]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1",
+            ),
+            day_selected: "bg-foreground text-background hover:bg-foreground/90",
+            // Middle days: transparent pill so the cell's cream band shows through
+            day_range_middle: "!bg-transparent !text-foreground hover:!bg-foreground/[0.08]",
+            day_range_start: "rdp-range-start bg-foreground text-background hover:bg-foreground/90",
+            day_range_end: "rdp-range-end bg-foreground text-background hover:bg-foreground/90",
+            // Today: small terracotta dot under the number
+            day_today:
+              "font-semibold after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:h-[3px] after:w-[3px] after:rounded-full after:bg-accent after:content-['']",
+            day_disabled: "opacity-25 cursor-not-allowed hover:bg-transparent",
+            day_hidden: "invisible",
+          }}
+          components={{
+            IconLeft: () => <ChevronLeft className="h-4 w-4" />,
+            IconRight: () => <ChevronRight className="h-4 w-4" />,
+          }}
+        />
       </div>
     </div>
   );
