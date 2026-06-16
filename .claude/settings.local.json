@@ -16,7 +16,19 @@
       "Bash(sips -c 760 778 --cropOffset 0 0 erbol.png --out /tmp/rev/erbol_top.png)",
       "Bash(sips -z 1520 1556 /tmp/rev/erbol_top.png)",
       "Bash(sips -c 634 778 --cropOffset 100 0 erbol.png --out /tmp/rev/erbol_mid.png)",
-      "Bash(sips -z 1268 1556 /tmp/rev/erbol_mid.png)"
+      "Bash(sips -z 1268 1556 /tmp/rev/erbol_mid.png)",
+      "Bash(command -v chromium-cli chromium chrome google-chrome)",
+      "Bash(node -e \"console.log\\(require.resolve\\('playwright'\\)\\)\")",
+      "Bash(echo \"started pid $!\")",
+      "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
+      "Read(//Applications/Chromium.app/Contents/MacOS/**)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1280,2000 --screenshot=/tmp/reviews-full.png 'http://localhost:5199/#reviews')",
+      "Bash(echo \"exit $?\")",
+      "Bash(python3 -c \"from PIL import Image; print\\(Image.open\\('/tmp/reviews-full.png'\\).size\\)\")",
+      "Bash(sips -g pixelWidth -g pixelHeight /tmp/reviews-full.png)",
+      "Bash(node /tmp/shoot.mjs)",
+      "Bash(cp /tmp/shoot.mjs __TRACKED_VAR__/_shoot.mjs)",
+      "Bash(node __TRACKED_VAR__/_shoot.mjs)"
     ]
   }
 }

@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star, ArrowUpRight } from "lucide-react";
 import { reviews, reviewsSummary, reviewSources, hasRealReviews, type Review } from "../data/reviews";
 import { useLanguage } from "../lib/language";
 
@@ -68,6 +68,7 @@ function RatingSummary() {
 }
 
 function ReviewCard({ review, language }: { review: Review; language: "it" | "en" }) {
+  const { t } = useLanguage();
   const source = reviewSources[review.source];
 
   return (
@@ -80,14 +81,50 @@ function ReviewCard({ review, language }: { review: Review; language: "it" | "en
       </div>
 
       <blockquote className="flex-1 text-[0.95rem] leading-relaxed text-foreground">
-        “{review.text[language]}”
+        “<Emphasized text={review.excerpt[language]} />”
       </blockquote>
 
-      <figcaption className="mt-5 flex items-baseline justify-between gap-3 border-t border-border pt-4">
-        <span className="text-sm font-medium text-foreground">{review.author}</span>
-        <span className="text-xs text-muted-foreground">{review.date[language]}</span>
+      <figcaption className="mt-5 border-t border-border pt-4">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="text-sm font-medium text-foreground">{review.author}</span>
+          <span className="text-xs text-muted-foreground">{review.date[language]}</span>
+        </div>
+        {review.url && (
+          <a
+            href={review.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-muted-foreground underline decoration-1 underline-offset-4 transition-colors hover:text-foreground"
+            aria-label={`${t("reviewsReadOriginal")} — ${review.author}`}
+          >
+            {t("reviewsReadOriginal")}
+            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+          </a>
+        )}
       </figcaption>
     </figure>
+  );
+}
+
+/**
+ * Renders an excerpt, bolding the key phrases wrapped in `**…**`. The markers
+ * are presentation only — the visible text stays a verbatim quote.
+ */
+function Emphasized({ text }: { text: string }) {
+  // split() keeps the captured group, so odd indices are the emphasised parts.
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="font-semibold text-foreground">
+            {part}
+          </strong>
+        ) : (
+          part
+        ),
+      )}
+    </>
   );
 }
 

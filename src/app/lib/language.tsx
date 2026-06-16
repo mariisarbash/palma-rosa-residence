@@ -60,6 +60,7 @@ const dictionary = {
     reviewsHeading: "Cosa dicono gli ospiti",
     reviewsIntro: "Recensioni reali lasciate dagli ospiti su Google, Airbnb e Booking.",
     reviewsReadAll: "Leggi tutte le recensioni su Google",
+    reviewsReadOriginal: "Leggi su Google",
     reviewsCount: "{count} recensioni",
     reviewsStarsAria: "{rating} stelle su 5",
 
@@ -195,6 +196,7 @@ const dictionary = {
     reviewsHeading: "What guests say",
     reviewsIntro: "Real reviews left by guests on Google, Airbnb and Booking.",
     reviewsReadAll: "Read all reviews on Google",
+    reviewsReadOriginal: "Read on Google",
     reviewsCount: "{count} reviews",
     reviewsStarsAria: "{rating} out of 5 stars",
 
