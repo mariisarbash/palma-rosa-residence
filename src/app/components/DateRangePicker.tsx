@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { it as itLocale, enUS } from "date-fns/locale";
 import { useLanguage } from "../lib/language";
 
@@ -8,6 +8,11 @@ type Props = {
   checkIn: string; // ISO yyyy-mm-dd
   checkOut: string;
   onChange: (checkIn: string, checkOut: string) => void;
+  // Optional footer with an integrated search pill + clear link.
+  onSearch?: () => void;
+  isSearching?: boolean;
+  searchSummary?: string; // result text shown on the left after a search
+  onClear?: () => void; // resets dates + search state (falls back to onChange)
 };
 
 function toISO(d: Date | undefined): string {
@@ -30,7 +35,15 @@ function cx(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) {
+export default function DateRangePicker({
+  checkIn,
+  checkOut,
+  onChange,
+  onSearch,
+  isSearching = false,
+  searchSummary,
+  onClear,
+}: Props) {
   const { language, t } = useLanguage();
   const [range, setRange] = useState<DateRange | undefined>({
     from: fromISO(checkIn),
@@ -63,7 +76,9 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
 
   function handleClear() {
     setRange(undefined);
-    onChange("", "");
+    // onClear resets search state too; otherwise just empty the dates.
+    if (onClear) onClear();
+    else onChange("", "");
   }
 
   const nights =
@@ -73,6 +88,7 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
 
   // Which field the next click fills — drives the header highlight.
   const step = !range?.from ? "in" : !range?.to ? "out" : "done";
+  const canSearch = Boolean(range?.from && range?.to && onSearch && !isSearching);
 
   const fmt = (d: Date) =>
     d.toLocaleDateString(localeStr, { weekday: "short", day: "numeric", month: "short" });
@@ -207,6 +223,47 @@ export default function DateRangePicker({ checkIn, checkOut, onChange }: Props) 
           }}
         />
       </div>
+
+      {/* ── Footer: result summary + clear + search pill ────── */}
+      {(range?.from || range?.to || onSearch) && (
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-border px-5 pb-6 pt-3 sm:px-7">
+          {/* Left: live status / result summary after a search */}
+          <span className="text-xs text-muted-foreground">
+            {isSearching ? t("checking") : searchSummary ?? ""}
+          </span>
+
+          {/* Right: clear link + search pill */}
+          <div className="ml-auto flex items-center gap-4">
+            {(range?.from || range?.to) && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="text-[11px] text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground"
+              >
+                {t("clear")}
+              </button>
+            )}
+
+            {onSearch && (
+              <button
+                type="button"
+                onClick={onSearch}
+                disabled={!canSearch}
+                className={cx(
+                  "flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] transition-all",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
+                  canSearch
+                    ? "cursor-pointer bg-foreground text-background hover:bg-foreground/90"
+                    : "cursor-not-allowed bg-foreground/15 text-foreground/30",
+                )}
+              >
+                <Search className="h-3.5 w-3.5" />
+                {isSearching ? "…" : t("verify")}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

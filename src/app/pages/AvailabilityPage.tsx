@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { Search, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useAvailability } from "../lib/availability-context";
 import { useLanguage } from "../lib/language";
 import {
@@ -51,7 +51,6 @@ export default function AvailabilityPage() {
   const [bathroomFilter, setBathroomFilter] = useState<BathroomFilter>("all");
   const [floorFilter, setFloorFilter] = useState<FloorFilter>("all");
 
-  const canSearch = Boolean(checkIn && checkOut && checkOut > checkIn && !isChecking);
   const filtersActive = bathroomFilter !== "all" || floorFilter !== "all";
 
   // Filter first (removes non-matching cards), then sort what remains by
@@ -70,6 +69,16 @@ export default function AvailabilityPage() {
   const availableCount = displayed.filter((a) => statuses[a.id] === "available").length;
   const unknownCount = displayed.filter((a) => statuses[a.id] === "unknown").length;
   const allUnknown = hasSearched && displayed.length > 0 && unknownCount === displayed.length;
+
+  // Result line shown inside the picker footer after a search resolves.
+  const searchSummary =
+    hasSearched && !isChecking
+      ? allUnknown
+        ? t("availabilityCheckFailed")
+        : availableCount > 0
+          ? t("availabilityResult", { count: availableCount })
+          : t("availabilityNoResult")
+      : undefined;
 
   const handleRangeChange = useCallback(
     (nextIn: string, nextOut: string) => {
@@ -99,24 +108,11 @@ export default function AvailabilityPage() {
             checkIn={checkIn}
             checkOut={checkOut}
             onChange={handleRangeChange}
+            onSearch={runSearch}
+            isSearching={isChecking}
+            searchSummary={searchSummary}
+            onClear={clearDates}
           />
-
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button
-              onClick={runSearch}
-              disabled={!canSearch}
-              className="btn-solid flex-1"
-            >
-              <Search className="h-4 w-4" />
-              {isChecking ? t("checking") : t("checkAvailability")}
-            </button>
-            {(checkIn || checkOut || hasSearched) && (
-              <button onClick={clearDates} className="btn-outline">
-                <X className="h-4 w-4" />
-                {t("clearDates")}
-              </button>
-            )}
-          </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             <SegmentedControl
@@ -140,16 +136,6 @@ export default function AvailabilityPage() {
               ]}
             />
           </div>
-
-          {hasSearched && !isChecking && displayed.length > 0 && (
-            <p className="apr-fade mt-6 text-center text-sm text-muted-foreground">
-              {allUnknown
-                ? t("availabilityCheckFailed")
-                : availableCount > 0
-                  ? t("availabilityResult", { count: availableCount })
-                  : t("availabilityNoResult")}
-            </p>
-          )}
         </div>
       </section>
 
